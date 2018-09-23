@@ -2,5 +2,8 @@
 	<h1>{{title}}</h1>
 	<div>
 		<slot></slot>
+		<coin v-for="coin in coins" 
+		v-bind:order = "coin" 
+		v-bind:key="coin">{{coin}}</coin>
 	</div>
 </div>
