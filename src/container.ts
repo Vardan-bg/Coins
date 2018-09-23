@@ -1,6 +1,7 @@
 import { Component, Prop  } from 'vue-typed'
 import Vue from 'vue'
 import { Coin } from './coin/coin'
+import './styles/style.css';
 
 Vue.component('coin', Coin)
 

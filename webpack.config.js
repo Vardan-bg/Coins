@@ -38,7 +38,31 @@ var config = {
 
   module: {
     loaders: [
-      { test: /\.html$/, loader: 'html-loader' }
+      { test: /\.html$/, loader: 'html-loader' },
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      // Fonts
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+        query: {
+          name: 'static/media/files/[name].[hash:8].[ext]'
+        }
+      }, {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+        query: {
+          name: 'static/media/fonts/[name].[hash:8].[ext]'
+        }
+      },
+      // Load images.
+      {
+        test: /\.(gif|jpe?g|png)$/,
+        loader: 'url-loader?limit=25000',
+        query: {
+          limit: 10000,
+          name: 'static/media/images/[name].[hash:8].[ext]'
+        }
+      },
     ]
   },
 
