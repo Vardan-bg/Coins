@@ -1,0 +1,24 @@
+{
+  "name": "coins",
+  "description": "Coins game",
+  "author": "Vardan-bg <vartan.bg@gmail.com>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "start": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.9",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.16.0",
+    "cross-env": "^5.0.1",
+    "html-loader": "^0.4.5",
+    "ts-loader": "^2.2.2",
+    "typescript": "^2.3.3",
+    "vue": "^2.0.5",
+    "vue-typed": "^2.1.1",
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1"
+  }
+}
