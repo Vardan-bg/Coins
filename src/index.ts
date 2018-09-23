@@ -5,7 +5,7 @@ import { Container } from './container'
 Vue.component('app-container', Container)
 
 @Component({
-	template: '<div><app-container title="My App">Hello {{msg}}!</app-container></div>'
+	template: '<div><app-container title="My App"></app-container></div>'
 })
 class App extends Vue {	
 	msg = 'there'
