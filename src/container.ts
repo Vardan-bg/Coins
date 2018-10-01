@@ -1,9 +1,15 @@
 import { Component, Prop  } from 'vue-typed'
 import Vue from 'vue'
 import { Coin } from './coin/coin'
+import { BonusTab } from './bonusTab/bonusTab'
+import { BetTab } from './betTab/betTab'
+import { StartButtons } from './startButtons/startButtons'
 import './styles/style.css';
 
 Vue.component('coin', Coin)
+Vue.component('bonusTab', BonusTab)
+Vue.component('betTab', BetTab)
+Vue.component('startButtons', StartButtons)
 
 @Component({
 	template: require('./container.html')
