@@ -127,10 +127,10 @@ body {
 
 @font-face {
   font-family: 'Aachen';
-  src: url('../fonts/Aachen.eot?#iefix') format('embedded-opentype'), 
-   url('../fonts/Aachen.woff') format('woff'),
-    url('../fonts/Aachen.ttf')  format('truetype'),
-     url('../fonts/Aachen.svg#Aachen') format('svg');
+  src: url('../Coins/fonts/Aachen.eot?#iefix') format('embedded-opentype'), 
+   url('../Coins/fonts/Aachen.woff') format('woff'),
+    url('../Coins/fonts/Aachen.ttf')  format('truetype'),
+     url('../Coins/fonts/Aachen.svg#Aachen') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -138,10 +138,10 @@ body {
 
 @font-face {
   font-family: 'AachenBT-Bold';
-  src: url('../fonts/AachenBT-Bold.eot?#iefix') format('embedded-opentype'), 
-   url('../fonts/AachenBT-Bold.woff') format('woff'),
-    url('../fonts/AachenBT-Bold.ttf')  format('truetype'),
-     url('../fonts/AachenBT-Bold.svg#AachenBT-Bold') format('svg');
+  src: url('../Coins/fonts/AachenBT-Bold.eot?#iefix') format('embedded-opentype'), 
+   url('../Coins/fonts/AachenBT-Bold.woff') format('woff'),
+    url('../Coins/fonts/AachenBT-Bold.ttf')  format('truetype'),
+     url('../Coins/fonts/AachenBT-Bold.svg#AachenBT-Bold') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -150,7 +150,7 @@ body {
 .gj-wrapper {
   width: 100%;
   min-height: 100vh;
-  background: url("../img/back.png");
+  background: url("../Coins/img/back.png");
   box-sizing: border-box;
   overflow: hidden;
 
@@ -164,7 +164,7 @@ body {
 .gj-table {
 	width: 1754px;
 	height: 1080px;
-	background-image: url("../img/table.png");
+	background-image: url("../Coins/img/table.png");
 	background-size: 100% 100%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -326,14 +326,14 @@ body {
 }
 
 .heads {
-	background-image: url("../img/coin/face.png");
+	background-image: url("../Coins/img/coin/face.png");
 	background-size: 100%;
 	z-index: 2;
 	transform: rotateY(0deg);
 }
 
 .tails {
-	background-image: url("../img/coin/coin1.png");
+	background-image: url("../Coins/img/coin/coin1.png");
 	background-size: 100%;
 	z-index: 1;
 	transform: rotateY(180deg);
@@ -407,83 +407,83 @@ body {
 }
 
 .tails1 {
-	background-image: url("../img/coin/coin1.png");
+	background-image: url("../Coins/img/coin/coin1.png");
 }
 
 .tails2 {
-	background-image: url("../img/coin/coin2.png");
+	background-image: url("../Coins/img/coin/coin2.png");
 }
 
 .tails3 {
-	background-image: url("../img/coin/coin3.png");
+	background-image: url("../Coins/img/coin/coin3.png");
 }
 
 .tails4 {
-	background-image: url("../img/coin/coin4.png");
+	background-image: url("../Coins/img/coin/coin4.png");
 }
 
 .tails5 {
-	background-image: url("../img/coin/coin5.png");
+	background-image: url("../Coins/img/coin/coin5.png");
 }
 
 .tails6 {
-	background-image: url("../img/coin/coin6.png");
+	background-image: url("../Coins/img/coin/coin6.png");
 }
 
 .tails7 {
-	background-image: url("../img/coin/coin7.png");
+	background-image: url("../Coins/img/coin/coin7.png");
 }
 
 .tails8 {
-	background-image: url("../img/coin/coin8.png");
+	background-image: url("../Coins/img/coin/coin8.png");
 }
 
 .tails9 {
-	background-image: url("../img/coin/coin9.png");
+	background-image: url("../Coins/img/coin/coin9.png");
 }
 
 .tails10 {
-	background-image: url("../img/coin/coin10.png");
+	background-image: url("../Coins/img/coin/coin10.png");
 }
 
 .tails11 {
-	background-image: url("../img/coin/coin11.png");
+	background-image: url("../Coins/img/coin/coin11.png");
 }
 
 .tails12 {
-	background-image: url("../img/coin/coin12.png");
+	background-image: url("../Coins/img/coin/coin12.png");
 }
 
 .tails13 {
-	background-image: url("../img/coin/coin13.png");
+	background-image: url("../Coins/img/coin/coin13.png");
 }
 
 .tails14 {
-	background-image: url("../img/coin/coin14.png");
+	background-image: url("../Coins/img/coin/coin14.png");
 }
 
 .tails15 {
-	background-image: url("../img/coin/coin15.png");
+	background-image: url("../Coins/img/coin/coin15.png");
 }
 
 .tails16 {
-	background-image: url("../img/coin/coin16.png");
+	background-image: url("../Coins/img/coin/coin16.png");
 }
 
 .tails17 {
-	background-image: url("../img/coin/coin17.png");
+	background-image: url("../Coins/img/coin/coin17.png");
 }
 
 .tails18 {
-	background-image: url("../img/coin/coin18.png");
+	background-image: url("../Coins/img/coin/coin18.png");
 }
 
 .tails19 {
-	background-image: url("../img/coin/coin19.png");
+	background-image: url("../Coins/img/coin/coin19.png");
 }
 
 .tails20 {
-	background-image: url("../img/coin/coin20.png");
+	background-image: url("../Coins/img/coin/coin20.png");
 }
 
 
