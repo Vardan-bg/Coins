@@ -15,6 +15,7 @@ var config = {
     filename: outputFileName + '.js',
 
     // mark /dist/ folder as a public path so index.html can reach it
+    // github pages /Coins/dist/
     publicPath: '/dist/'
   },
 
