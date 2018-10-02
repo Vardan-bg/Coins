@@ -15,7 +15,7 @@ var config = {
     filename: outputFileName + '.js',
 
     // mark /dist/ folder as a public path so index.html can reach it
-    publicPath: 'Coins/dist/'
+    publicPath: '/dist/'
   },
 
   // webpack-dev-server config, see: https://webpack.github.io/docs/webpack-dev-server.html
