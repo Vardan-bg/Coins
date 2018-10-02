@@ -12,3 +12,4 @@ class App extends Vue {
 }
 
 new App().$mount('#app');
+

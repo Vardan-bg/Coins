@@ -1,6 +1,6 @@
 import { Component, Prop  } from 'vue-typed'
 import Vue from 'vue'
-
+import startBus from '../events/StartBus'
 @Component({
 	props: ['order'],
 	template: require('./startButtons.html')
@@ -8,4 +8,7 @@ import Vue from 'vue'
 export class StartButtons extends Vue {
 	@Prop({ type: String })
 	title: string;
+	startGame(event){
+		startBus.$emit('start-event');
+	}
 }

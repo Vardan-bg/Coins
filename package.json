@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
     "@types/node": "^8.0.9",
@@ -17,6 +18,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^2.0.0",
     "html-loader": "^0.4.5",
+    "push-dir": "^0.4.1",
     "style-loader": "^0.23.0",
     "ts-loader": "^2.2.2",
     "typescript": "^2.3.3",

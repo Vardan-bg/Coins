@@ -5,6 +5,7 @@ import { BonusTab } from './bonusTab/bonusTab'
 import { BetTab } from './betTab/betTab'
 import { StartButtons } from './startButtons/startButtons'
 import './styles/style.css';
+import startBus from './events/StartBus'
 
 Vue.component('coin', Coin)
 Vue.component('bonusTab', BonusTab)
@@ -19,17 +20,18 @@ export class Container extends Vue {
 	title: string
 	@Prop({ type: Array, default: function () { return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] }}) coins: Array<number>
 	options: any;
-	@Prop()
-	styleObject: any;
 
-	// data() {
-	// 	return {
-	// 		fullHeight: document.documentElement.clientHeight
-	// 	}
-	// }
+	styleObject: any = ""
+	startGame: Boolean = false
+
 	mounted() {
 		this.initResize();
 		window.addEventListener('resize', this.initResize)
+		startBus.$on('start-event', this.startEventHandler)
+	}
+	startEventHandler(){
+		console.log('start');
+		this.startGame = true;
 	}
 	initResize () {
 
@@ -69,14 +71,6 @@ export class Container extends Vue {
 	        '-o-transform': 'scale(' + scale + ')',
 	        'transform': 'scale(' + scale + ')'
 	    }
-	    //document.getElementByClass("gj-game").style.color = "blue";
-	    // $('.gj-game').css({
-	    //     '-webkit-transform': 'scale(' + scale + ')',
-	    //     '-moz-transform': 'scale(' + scale + ')',
-	    //     '-ms-transform': 'scale(' + scale + ')',
-	    //     '-o-transform': 'scale(' + scale + ')',
-	    //     'transform': 'scale(' + scale + ')'
-	    // });
 	}
 
 	isGameResizable(options) {
