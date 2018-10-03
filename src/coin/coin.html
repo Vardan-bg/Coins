@@ -1,7 +1,7 @@
-<div :class="'All coin' + order">
+<div :class="['All coin' + order, { active: isActive }]" v-on:click="flip" v-bind:style="styleObject">
 	<div class="face heads">
 		<!-- <slot></slot> -->
 	</div>
-	<div :class="'face tails tails' + order + gameStarted">
+	<div :class="'face tails tails' + order + gameStarted" >
 	</div>
 </div>

@@ -17,22 +17,46 @@ Vue.component('startButtons', StartButtons)
 })
 export class Container extends Vue {
 	@Prop({ type: String })
-	title: string
+	title: string;
 	@Prop({ type: Array, default: function () { return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] }}) coins: Array<number>
 	options: any;
 
-	styleObject: any = ""
-	startGame: Boolean = false
+	sum: Number = 0;
+
+	styleObject: any = "";
+	startGame: boolean = false;
+	counter: number = 0;
+	stop: any = "";
 
 	mounted() {
 		this.initResize();
 		window.addEventListener('resize', this.initResize)
 		startBus.$on('start-event', this.startEventHandler)
 	}
-	startEventHandler(){
-		console.log('start');
-		this.startGame = true;
+
+	getValue(value){
+		this.counter ++;
+		this.sum += value;
+		if(this.counter > 2){
+			this.stop = {
+				"pointer-events": "none"
+			}
+			this.startGame = false;
+		}
+		console.log(this.counter, value, this.sum);
 	}
+
+	startEventHandler(){
+		if(!this.startGame){
+			console.log('start');
+			this.startGame = true;
+			this.sum = 0;
+			this.stop = {
+				"pointer-events": "inherit"
+			}
+			this.counter = 0;
+		}
+}
 	initResize () {
 
 	    var options = {

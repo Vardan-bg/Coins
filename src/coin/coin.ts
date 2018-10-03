@@ -5,15 +5,38 @@ import Vue from 'vue'
 	props: ['order', 'gameStarted'],
 	template: require('./coin.html'),
 	watch: {
-		gameStarted: function () {
+		gameStarted: function (after, before) {
 			this.started = this.gameStarted;
-			console.log(this.started, 'this.started');
+			
+			this.styleObject = {
+				"pointer-events": "all",
+				"animation-name": "inherit"
+			};
+			if (!before && after){
+				this.isActive = false;
+			}
 		}
 	}
 })
 export class Coin extends Vue {
-	@Prop({ type: String })
-	started: Boolean;
+
+	isActive: boolean = false;
+	styleObject: any = "";
+	started: boolean = false;
+
+	mounted(){
+		console.log(this.started);
+	}
+	flip(event){
+		console.log('flip')
+		this.styleObject = {
+			"pointer-events": "none"
+		};
+		this.isActive = true;
+		const value = Math.floor(Math.random() * 20) + 1;
+
+		this.$emit('clicked', value)
+	}
 	// mounted(){
 	// 	// let vm = this;      
 
