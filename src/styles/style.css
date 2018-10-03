@@ -406,6 +406,17 @@ body {
 .coin20 {
 	left: 800px;
 }
+/*.coinDefault{
+	top: 225px;
+	left: 400px;
+	animation-name: spread;
+	animation-timing-function: linear;
+	animation-duration: 2.5s;
+
+}
+@keyframes pulse {
+	
+}*/
 
 .tails1 {
 	background-image: url("../img/coin/coin1.png");
