@@ -25,38 +25,69 @@ export class Container extends Vue {
 
 	styleObject: any = "";
 	startGame: boolean = false;
+	bonusStarted: boolean = false;
+	bonusCount: number = 0;
 	counter: number = 0;
 	stop: any = "";
+	cashout: any = "";
 
 	mounted() {
 		this.initResize();
 		window.addEventListener('resize', this.initResize)
 		startBus.$on('start-event', this.startEventHandler)
+		startBus.$on('cashOut-event', this.cashOutEventHandler)
+		startBus.$on('startBonus-event', this.startBonusEventHandler)
 	}
 
 	getValue(value){
-		this.counter ++;
+		this.counter++;
 		this.sum += value;
 		if(this.counter > 2){
-			this.stop = {
-				"pointer-events": "none"
+			this.stopGame();
+			if(this.bonusStarted){
+				this.bonusCount++;
+				this.startingGame();
 			}
-			this.startGame = false;
 		}
 		console.log(this.counter, value, this.sum);
 	}
 
-	startEventHandler(){
-		if(!this.startGame){
-			console.log('start');
-			this.startGame = true;
-			this.sum = 0;
-			this.stop = {
-				"pointer-events": "inherit"
-			}
-			this.counter = 0;
+	startBonusEventHandler(){
+		if(!this.startGame && !this.bonusStarted){
+			this.startingGame();
+			this.bonusStarted = true;
+			this.bonusCount = 0;
 		}
-}
+	}
+
+	cashOutEventHandler(){
+		if(this.counter < 3 && this.counter !== 0){
+			console.log('cashOut',this.counter);
+			this.stopGame();
+		}
+	}
+
+	stopGame(){
+		this.stop = {
+			"pointer-events": "none"
+		}
+		this.startGame = false;
+	}
+
+	startEventHandler(){
+		if(!this.startGame && !this.bonusStarted){
+			this.startingGame();
+		}
+	}
+	startingGame(){
+		console.log('start');
+		this.startGame = true;
+		this.sum = 0;
+		this.stop = {
+			"pointer-events": "inherit"
+		}
+		this.counter = 0;
+	}
 	initResize () {
 
 	    var options = {

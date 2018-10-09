@@ -11,4 +11,7 @@ export class StartButtons extends Vue {
 	startGame(event){
 		startBus.$emit('start-event');
 	}
+	cashOut(event){
+		startBus.$emit('cashOut-event');
+	}
 }

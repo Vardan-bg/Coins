@@ -406,17 +406,29 @@ body {
 .coin20 {
 	left: 800px;
 }
-/*.coinDefault{
-	top: 225px;
-	left: 400px;
-	animation-name: spread;
+.container .coinDefault{
+	
+	animation-name: pulse  !important;
 	animation-timing-function: linear;
-	animation-duration: 2.5s;
+	animation-duration: 0.5s;
+	transition: 0.2s;
+	animation-iteration-count: 1;
 
 }
 @keyframes pulse {
-	
-}*/
+
+	0%{
+	}
+
+	50%{
+		top: 225px;
+		left: 400px;
+	}
+
+	100%{
+	}
+
+}
 
 .tails1 {
 	background-image: url("../img/coin/coin1.png");

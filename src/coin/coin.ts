@@ -5,15 +5,18 @@ import Vue from 'vue'
 	props: ['order', 'gameStarted'],
 	template: require('./coin.html'),
 	watch: {
-		gameStarted: function (after, before) {
-			this.started = this.gameStarted;
-			
-			this.styleObject = {
-				"pointer-events": "all",
-				"animation-name": "inherit"
-			};
-			if (!before && after){
-				this.isActive = false;
+		gameStarted: {
+			immediate: true,
+			handler (after, before) {
+				this.started = this.gameStarted;
+				console.log(after, before);
+				this.styleObject = {
+					"pointer-events": "all",
+					"animation-name": "inherit"
+				};
+				if (!before && after){
+					this.isActive = false;
+				}
 			}
 		}
 	}
