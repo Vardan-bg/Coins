@@ -30,6 +30,9 @@ export class Container extends Vue {
 	counter: number = 0;
 	stop: any = "";
 	cashout: any = "";
+	startNumber: number = null;
+	range: number = 5;
+	win: boolean = false;
 
 	mounted() {
 		this.initResize();
@@ -40,16 +43,18 @@ export class Container extends Vue {
 	}
 
 	getValue(value){
+		console.log(value,'value');
 		this.counter++;
 		this.sum += value;
 		if(this.counter > 2){
 			this.stopGame();
 			if(this.bonusStarted){
 				this.bonusCount++;
-				this.startingGame();
+				console.log(this.bonusCount, 'bonusCount');
 			}
 		}
-		console.log(this.counter, value, this.sum);
+		this.win = this.sum < this.startNumber + 5 && this.sum > this.startNumber;
+		console.log(this.counter, value, this.sum, this.win);
 	}
 
 	startBonusEventHandler(){
@@ -72,11 +77,13 @@ export class Container extends Vue {
 			"pointer-events": "none"
 		}
 		this.startGame = false;
+		console.log
 	}
 
 	startEventHandler(){
-		if(!this.startGame && !this.bonusStarted){
+		if(!this.startGame){
 			this.startingGame();
+			this.getRange();
 		}
 	}
 	startingGame(){
@@ -87,6 +94,10 @@ export class Container extends Vue {
 			"pointer-events": "inherit"
 		}
 		this.counter = 0;
+	}
+	getRange(){
+		this.startNumber = Math.floor(Math.random() * 10) + 15;
+		console.log('startNumber', this.startNumber);
 	}
 	initResize () {
 

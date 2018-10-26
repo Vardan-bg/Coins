@@ -1,20 +1,20 @@
 import { Component, Prop  } from 'vue-typed'
 import Vue from 'vue'
+import startBus from './../events/StartBus'
 
 @Component({
 	props: ['order', 'gameStarted'],
 	template: require('./coin.html'),
 	watch: {
 		gameStarted: {
-			immediate: true,
 			handler (after, before) {
 				this.started = this.gameStarted;
-				console.log(after, before);
+				console.log(after, before, 'starting012');
 				this.styleObject = {
 					"pointer-events": "all",
 					"animation-name": "inherit"
 				};
-				if (!before && after){
+				if (before < after){
 					this.isActive = false;
 				}
 			}
@@ -29,6 +29,11 @@ export class Coin extends Vue {
 
 	mounted(){
 		console.log(this.started);
+		startBus.$on('start-event', this.startEventHandler)
+	}
+
+	startEventHandler(){
+		console.log('coin start event')
 	}
 	flip(event){
 		console.log('flip')

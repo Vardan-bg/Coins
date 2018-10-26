@@ -624,10 +624,10 @@ display: table;
 	background-color: #fff;
 	border-radius: 10px;
 	-moz-box-shadow:   inset 0 0 9px #0a121c;
-  -webkit-box-shadow: inset 0 0 9px #0a121c;
-  box-shadow:         inset 0 0 9px #0a121c;
-  color: #0d121a;
-  font-size: 16px;
+	-webkit-box-shadow: inset 0 0 9px #0a121c;
+	box-shadow:         inset 0 0 9px #0a121c;
+	color: #0d121a;
+	font-size: 16px;
     font-family: 'AachenBT-Bold';
     line-height: 16px;
     text-align: center;
@@ -636,4 +636,27 @@ display: table;
     border:1px solid #0a121c;
     color: #27f000;
 
+}
+
+.topPanel{
+    display: flex;
+	position: absolute;
+	box-shadow: inset 0 0 10px black;
+	width: 210px; height: 50px;
+	background-color: #151f2d;
+	border-radius: 15px;
+	text-align: center;
+	color: white;
+	top: 112px;
+}
+.topPanelSection{
+    display: grid;
+	line-height: 50px;
+	width:  70px;
+	height: 100%;
+	border-right: solid #4e4d4d;
+	border-width: 0 1px;
+}
+.topPanelSection:last-child {
+	border-right: none;
 }

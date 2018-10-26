@@ -3,7 +3,11 @@
 	<div v-bind:style="styleObject" class="gj-game">
 
 		<div class="gj-table">
-
+			<div class="topPanel">
+				<div class="topPanelSection"></div>
+				<div class="topPanelSection">{{startNumber? startNumber + " - " + (startNumber+range):""}}</div>
+				<div class="topPanelSection">{{counter > 2? (win? 'Win': 'lose'): ''}}</div>
+			</div>
 			<div class="all-coins">
 				<slot></slot>
 				<div class="coins">
