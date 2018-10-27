@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "start": "webpack-dev-server",
-    "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "npm run build push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
     "@types/node": "^8.0.9",
