@@ -12,7 +12,7 @@
 				<slot></slot>
 				<div class="coins">
 					<div class="container">
-						<coin v-bind:style="stop" v-bind:gameStarted = "startGame" v-for="coin in coins" 
+						<coin v-bind:gameStarted = "startGame" v-for="coin in coins" 
 						v-bind:order = "coin" 
 						v-bind:key="coin"
 						@clicked = "getValue">{{coin}}</coin>

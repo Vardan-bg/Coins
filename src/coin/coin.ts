@@ -14,6 +14,12 @@ import startBus from './../events/StartBus'
 					"pointer-events": "all",
 					"animation-name": "inherit"
 				};
+				if(after < before){
+					this.styleObject ={
+						"pointer-events": "none",
+					"animation-name": "inherit"
+					}
+				}
 				if (before < after){
 					this.isActive = false;
 				}

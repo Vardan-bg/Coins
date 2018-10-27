@@ -28,7 +28,6 @@ export class Container extends Vue {
 	bonusStarted: boolean = false;
 	bonusCount: number = 0;
 	counter: number = 0;
-	stop: any = "";
 	cashout: any = "";
 	startNumber: number = null;
 	range: number = 5;
@@ -73,9 +72,6 @@ export class Container extends Vue {
 	}
 
 	stopGame(){
-		this.stop = {
-			"pointer-events": "none"
-		}
 		this.startGame = false;
 		console.log
 	}
@@ -90,9 +86,6 @@ export class Container extends Vue {
 		console.log('start');
 		this.startGame = true;
 		this.sum = 0;
-		this.stop = {
-			"pointer-events": "inherit"
-		}
 		this.counter = 0;
 	}
 	getRange(){
