@@ -32,6 +32,7 @@ export class Coin extends Vue {
 	isActive: boolean = false;
 	styleObject: any = "";
 	started: boolean = false;
+	order: number;
 
 	mounted(){
 		console.log(this.started);
@@ -42,7 +43,7 @@ export class Coin extends Vue {
 		console.log('coin start event')
 	}
 	flip(event){
-		console.log('flip')
+		console.log('flip', this.getOrder())
 		this.styleObject = {
 			"pointer-events": "none"
 		};
@@ -50,6 +51,10 @@ export class Coin extends Vue {
 		const value = Math.floor(Math.random() * 20) + 1;
 
 		this.$emit('clicked', value)
+	}
+
+	getOrder(){
+		return this.order;
 	}
 	// mounted(){
 	// 	// let vm = this;      

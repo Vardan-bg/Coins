@@ -6,6 +6,7 @@ import { BetTab } from './betTab/betTab'
 import { StartButtons } from './startButtons/startButtons'
 import './styles/style.css';
 import startBus from './events/StartBus'
+import axios from 'axios';
 
 Vue.component('coin', Coin)
 Vue.component('bonusTab', BonusTab)
@@ -32,15 +33,22 @@ export class Container extends Vue {
 	startNumber: number = null;
 	range: number = 5;
 	win: boolean = false;
+	host: string = '';
 
 	mounted() {
+		console.log(this.getHostName());
+		this.host = this.getHostName();
 		this.initResize();
 		window.addEventListener('resize', this.initResize)
 		startBus.$on('start-event', this.startEventHandler)
 		startBus.$on('cashOut-event', this.cashOutEventHandler)
 		startBus.$on('startBonus-event', this.startBonusEventHandler)
 	}
-
+	getHostName(): string {
+		const hostName = window.location.hostname;
+		const port = window.location.port;
+		return hostName + ':' + port;
+	}
 	getValue(value){
 		console.log(value,'value');
 		this.counter++;
@@ -83,6 +91,15 @@ export class Container extends Vue {
 		}
 	}
 	startingGame(){
+		axios.post('/api/Game/StartGame', {
+			Bet: 20
+		})
+		.then(response => {
+			console.log('test',response);
+		})
+		.catch(e => {
+			console.log('test2', e)
+		});
 		console.log('start');
 		this.startGame = true;
 		this.sum = 0;
