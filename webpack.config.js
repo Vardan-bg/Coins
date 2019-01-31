@@ -12,11 +12,11 @@ var config = {
     path: path.resolve(__dirname, 'dist'),
 
     // with filename
-    filename: outputFileName + '.js',
+    filename: 'Scripts/' + outputFileName + '.js',
 
     // mark /dist/ folder as a public path so index.html can reach it
     // github pages /Coins/dist/
-    publicPath: '/dist/'
+    publicPath: '/'
   },
 
   // webpack-dev-server config, see: https://webpack.github.io/docs/webpack-dev-server.html
@@ -46,13 +46,13 @@ var config = {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader?limit=10000&mimetype=application/font-woff',
         query: {
-          name: 'static/media/files/[name].[hash:8].[ext]'
+          name: 'Content/images/[name].[hash:8].[ext]'
         }
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
         query: {
-          name: 'static/media/fonts/[name].[hash:8].[ext]'
+          name: 'fonts/[name].[hash:8].[ext]'
         }
       },
       // Load images.
@@ -61,7 +61,7 @@ var config = {
         loader: 'url-loader?limit=25000',
         query: {
           limit: 10000,
-          name: 'static/media/images/[name].[hash:8].[ext]'
+          name: 'Content/images/[name].[hash:8].[ext]'
         }
       },
     ]
