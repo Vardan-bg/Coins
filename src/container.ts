@@ -31,7 +31,7 @@ export class Container extends Vue {
 	counter: number = 0;
 	cashout: any = "";
 	startNumber: number = null;
-	range: number = 5;
+	range: number = 6;
 	win: boolean = false;
 	host: string = '';
 
@@ -87,23 +87,23 @@ export class Container extends Vue {
 	startEventHandler(){
 		if(!this.startGame){
 			this.startingGame();
-			this.getRange();
+			// this.getRange();
 		}
 	}
 	startingGame(){
-		axios.post('/api/Game/StartGame', {
-			Bet: 20
-		})
+		let host = this.getHostName();
+		axios.post(`http://${host}/api/Game/StartGame`)
 		.then(response => {
-			console.log('test',response);
+			console.log('test',response.data);
+			console.log('start');
+			this.startGame = true;
+			this.sum = 0;
+			this.counter = 0;
+			this.startNumber = +response.data.Range.split(" ", 1)[0];
 		})
 		.catch(e => {
 			console.log('test2', e)
 		});
-		console.log('start');
-		this.startGame = true;
-		this.sum = 0;
-		this.counter = 0;
 	}
 	getRange(){
 		this.startNumber = Math.floor(Math.random() * 10) + 15;
