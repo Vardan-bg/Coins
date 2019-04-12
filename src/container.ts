@@ -92,6 +92,7 @@ export class Container extends Vue {
 	}
 	startingGame(){
 		let host = this.getHostName();
+		// axios.post(`http://localhost:58272/api/Game/StartGame`)
 		axios.post(`http://${host}/api/Game/StartGame`)
 		.then(response => {
 			console.log('test',response.data);

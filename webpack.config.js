@@ -38,7 +38,7 @@ var config = {
   },
 
   module: {
-    loaders: [
+    rules: [
       { test: /\.html$/, loader: 'html-loader' },
       { test: /\.css$/, loader: "style-loader!css-loader" },
       // Fonts
@@ -81,7 +81,7 @@ if (process.env.NODE_ENV === 'production') {
   // config.output.filename = outputFileName + '.min.js'
   
   // still need babel for production stage since uglifyJs not support es6
-  config.module.loaders = (config.module.loaders || []).concat([
+  config.module.rules = (config.module.rules || []).concat([
     { test: /\.ts(x?)$/, loader: 'babel-loader?presets[]=es2015!ts-loader' },
     { test: /\.js$/, loader: 'babel-loader', query: { presets: ['es2015'] } }
   ])
@@ -105,7 +105,7 @@ if (process.env.NODE_ENV === 'production') {
 
 } else {
 
-  config.module.loaders = config.module.loaders.concat([
+  config.module.rules = config.module.rules.concat([
     { test: /\.ts(x?)$/, loader: 'ts-loader' }
   ])
 
