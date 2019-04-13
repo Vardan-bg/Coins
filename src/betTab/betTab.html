@@ -5,12 +5,12 @@
 
 
 		<div class="bet-field">
-			<div>
-				<button class="border-right">+</button>
+			<div class="border-right">
+				<button v-on:click="changeBet(-100)">-</button>
 			</div>
-			<input type="number">
-			<div>
-				<button class="border-left">-</button>
+			<input type="number" v-model="betAmount">
+			<div class="border-left">
+				<button v-on:click="changeBet(100)">+</button>
 			</div>
 		</div>
 

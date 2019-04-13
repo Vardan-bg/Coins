@@ -8,4 +8,11 @@ import Vue from 'vue'
 export class BetTab extends Vue {
 	@Prop({ type: String })
 	title: string;
+	betAmount: number = 0;
+	changeBet(value: number){
+		if (+this.betAmount + value >= 0){
+			this.betAmount = +this.betAmount + value;
+		}
+		//startBus.$emit('start-event');
+	}
 }

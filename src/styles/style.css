@@ -400,6 +400,10 @@ textarea:focus {
   }
 }
 
+.tails0 {
+  background-image: url("../img/coin/coin0.png");
+}
+
 .tails1 {
   background-image: url("../img/coin/coin1.png");
 }
@@ -513,6 +517,9 @@ textarea:focus {
   clear: both;
   display: table;
 }
+.bonus-block > div {
+  display: inline-flex;
+}
 
 .bonus-block-number {
   float: left;
@@ -524,6 +531,8 @@ textarea:focus {
 }
 
 .ok-button {
+  border: none;
+  box-sizing: border-box;
   padding-left: 10px;
   width: 40px;
   height: 40px;
@@ -565,13 +574,13 @@ textarea:focus {
 }
 
 .bonus-block-number button.stage {
-  width: 32px;
+  width: 31px;
   height: 24px;
   font-size: 20px;
   line-height: 20px;
   border: 0px;
   font-family: "AachenBT-Bold";
-  margin: 10px;
+  margin: 5px;
   border-radius: 50%;
   text-align: center;
   user-select: none;
@@ -595,6 +604,7 @@ textarea:focus {
 	display: inline-flex;
 }
 .bet-field button {
+  border: none;
   width: 40px;
   height: 40px;
   background-color: transparent;
@@ -640,4 +650,14 @@ textarea:focus {
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.start-buttons {
+  height: 80px;
+  width: 295px;
+}
+.start-buttons .wooden {
+  position: absolute;
+}
+#randomize {
+  right: 0;
 }

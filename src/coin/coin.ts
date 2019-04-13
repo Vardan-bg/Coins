@@ -1,6 +1,7 @@
 import { Component, Prop  } from 'vue-typed'
 import Vue from 'vue'
 import startBus from './../events/StartBus'
+import {sortBy, forIn} from 'lodash';
 
 @Component({
 	props: ['order', 'gameStarted'],
@@ -9,6 +10,11 @@ import startBus from './../events/StartBus'
 		gameStarted: {
 			handler (after, before) {
 				this.started = this.gameStarted;
+				if (this.gameStarted) {
+					this.value = 0;
+					//this.values = this.getCoins();
+					console.log(this.values,'values');
+				}
 				console.log(after, before, 'starting012');
 				this.styleObject = {
 					"pointer-events": "all",
@@ -33,14 +39,17 @@ export class Coin extends Vue {
 	styleObject: any = "";
 	started: boolean = false;
 	order: number;
+	values: Array<number> = [];
+	value: number = 0;
 
 	mounted(){
-		console.log(this.started);
+		console.log(this.started, 'test');
+		//this.value = this.order;
 		startBus.$on('start-event', this.startEventHandler)
 	}
 
 	startEventHandler(){
-		console.log('coin start event')
+		console.log('coin start event');
 	}
 	flip(event){
 		console.log('flip', this.getOrder())
@@ -48,13 +57,25 @@ export class Coin extends Vue {
 			"pointer-events": "none"
 		};
 		this.isActive = true;
-		const value = Math.floor(Math.random() * 20) + 1;
-
-		this.$emit('clicked', value)
+		this.value = Math.floor(Math.random() * 20) + 1;
+		//this.value = this.getOrder();
+		this.$emit('clicked', this.value)
 	}
 
 	getOrder(){
-		return this.order;
+		return this.values[this.order];
+	}
+	getCoins() {
+		let arr = [];
+		for (let i = 1; i < 21; i++) {
+			let rand = Math.floor(Math.random() * 200000) + 1;
+			arr.push({'value': rand, 'key': i});
+		}
+		let sorted = sortBy(arr, (node) => node.value)
+		Object.keys(arr).reduce((obj, key) => (obj[arr[key]] = key, obj), {});
+		let final = [];
+		forIn(sorted, (value, key) => {final[key] = value.key})
+		return final;
 	}
 	// mounted(){
 	// 	// let vm = this;      

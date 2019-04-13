@@ -1,4 +1,4 @@
 <div class="start-buttons">
-	<button class="cash wooden"  v-on:click="cashOut">Cashback</button>
-	<button class="wooden" id="randomize" v-on:click="startGame">Start</button>
+	<button :disabled="!active" :class="['cash wooden', { activeButton: !active }]" v-on:click="cashOut">Cashback</button>
+	<button :disabled="start" :class="['wooden', { activeButton: start }]" id="randomize" v-on:click="startGame">Start</button>
 </div>

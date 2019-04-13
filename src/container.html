@@ -22,7 +22,7 @@
 			<div class="buttons">
 				<bonusTab></bonusTab>
 				<betTab></betTab>
-				<startButtons></startButtons>
+				<startButtons v-bind:active = "this.counter == 2" v-bind:start = "startGame"></startButtons>
 			</div>
 		</div>
 	</div>
