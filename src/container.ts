@@ -5,6 +5,7 @@ import { BonusTab } from './bonusTab/bonusTab'
 import { BetTab } from './betTab/betTab'
 import { StartButtons } from './startButtons/startButtons'
 import './styles/style.css';
+import './styles/elements.scss';
 import startBus from './events/StartBus'
 import axios from 'axios';
 
@@ -73,7 +74,7 @@ export class Container extends Vue {
 	}
 
 	cashOutEventHandler(){
-		if(this.counter < 3 && this.counter !== 0){
+		if(this.counter == 2){
 			console.log('cashOut',this.counter);
 			this.stopGame();
 		}
@@ -92,8 +93,8 @@ export class Container extends Vue {
 	}
 	startingGame(){
 		let host = this.getHostName();
-		// axios.post(`http://localhost:58272/api/Game/StartGame`)
-		axios.post(`http://${host}/api/Game/StartGame`)
+		axios.post(`http://localhost:58272/api/Game/StartGame`)
+		// axios.post(`http://${host}/api/Game/StartGame`)
 		.then(response => {
 			console.log('test',response.data);
 			console.log('start');

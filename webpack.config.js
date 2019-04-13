@@ -40,7 +40,10 @@ var config = {
   module: {
     rules: [
       { test: /\.html$/, loader: 'html-loader' },
-      { test: /\.css$/, loader: "style-loader!css-loader" },
+      {
+        test:/\.(s*)css$/,
+        use:['style-loader','css-loader', 'sass-loader']
+      },
       // Fonts
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
