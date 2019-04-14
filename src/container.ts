@@ -176,5 +176,9 @@ export class Container extends Vue {
 	}
 }
 /*
-send betAmount to startgame api call
+send betAmount to startgame api call and if game is bonus or not
+get coin number Value on click.
+on cashout check if i can cashout then give fixed total value
+initial call on open page to get: current Cash; if game is in progress in which stage it is 
+	(current bet, current top range values, coins opened - their values and positions, bonus game stages, their results)
  */

@@ -17,7 +17,7 @@ var config = {
 
     // mark /dist/ folder as a public path so index.html can reach it
     // github pages /Coins/dist/
-    publicPath: '/'
+    publicPath: '/Coins/dist/'
   },
 
   // webpack-dev-server config, see: https://webpack.github.io/docs/webpack-dev-server.html
