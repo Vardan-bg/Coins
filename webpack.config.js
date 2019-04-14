@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 var outputFileName = 'bundle'
 
 var config = {
@@ -41,8 +42,8 @@ var config = {
     rules: [
       { test: /\.html$/, loader: 'html-loader' },
       {
-        test:/\.(s*)css$/,
-        use:['style-loader','css-loader', 'sass-loader']
+        test: /\.(s*)css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       // Fonts
       {
@@ -82,7 +83,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // You may want to use different name for production
   // config.output.filename = outputFileName + '.min.js'
-  
+
   // still need babel for production stage since uglifyJs not support es6
   config.module.rules = (config.module.rules || []).concat([
     { test: /\.ts(x?)$/, loader: 'babel-loader?presets[]=es2015!ts-loader' },
@@ -98,9 +99,13 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        warnings: false,
+        ie8: false,
+        output: {
+          comments: false
+        }
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin()
