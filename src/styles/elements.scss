@@ -70,3 +70,25 @@ button.wooden:before {
     box-shadow: none;
   }
 }
+
+.panels {
+  font-size: 22px;
+  display: flex;
+  position: absolute;
+  width: 900px;
+  height: 50px;
+  text-align: center;
+  color: white;
+  top: 92px;
+  .leftPanel, .rightPanel {
+    width: 100px;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px black;
+    background-color: #151f2d;
+  }
+  .rightPanel {
+    margin-right: 0;
+    margin-left: auto;
+    text-align: center;
+  }
+}

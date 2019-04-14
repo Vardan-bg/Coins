@@ -12,10 +12,7 @@ import {sortBy, forIn} from 'lodash';
 				this.started = this.gameStarted;
 				if (this.gameStarted) {
 					this.value = 0;
-					//this.values = this.getCoins();
-					console.log(this.values,'values');
 				}
-				console.log(after, before, 'starting012');
 				this.styleObject = {
 					"pointer-events": "all",
 					"animation-name": "inherit"
@@ -52,7 +49,6 @@ export class Coin extends Vue {
 		console.log('coin start event');
 	}
 	flip(event){
-		console.log('flip', this.getOrder())
 		this.styleObject = {
 			"pointer-events": "none"
 		};

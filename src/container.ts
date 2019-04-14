@@ -33,9 +33,11 @@ export class Container extends Vue {
 	counter: number = 0;
 	cashout: any = "";
 	startNumber: number = null;
-	range: number = 6;
+	range: number = 5;
 	win: boolean = false;
 	host: string = '';
+	betValue: number = 100;
+	total: number = 1000000;
 
 	mounted() {
 		console.log(this.getHostName());
@@ -62,7 +64,10 @@ export class Container extends Vue {
 				console.log(this.bonusCount, 'bonusCount');
 			}
 		}
-		this.win = this.sum <= this.startNumber + 5 && this.sum >= this.startNumber;
+		this.win = this.sum <= this.startNumber + this.range && this.sum >= this.startNumber;
+		console.log(this.total, this.betValue, 'stats');
+		if (this.win)
+			this.total += +this.betValue * 3;
 		console.log(this.counter, value, this.sum, this.win);
 	}
 
@@ -75,8 +80,9 @@ export class Container extends Vue {
 	}
 
 	cashOutEventHandler() {
-		if (this.counter == 2) {
+		if (this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range) {
 			this.counter = 0;
+			this.total += +this.betValue;
 			console.log('cashOut', this.counter);
 			this.stopGame();
 		}
@@ -88,21 +94,22 @@ export class Container extends Vue {
 	}
 
 	startEventHandler() {
-		if (!this.startGame) {
+		if (!this.startGame && this.betValue > 0) {
+			this.total -= this.betValue;
 			this.startingGame();
 			// this.getRange();
 		}
 	}
 	startingGame() {
 		let host = this.getHostName();
-		this.startGame = true;
-		this.counter = 0;
-		axios.post(`http://localhost:58272/api/Game/StartGame`)
-			// axios.post(`http://${host}/api/Game/StartGame`)
+		// axios.post(`http://localhost:58272/api/Game/StartGame`)
+			axios.post(`http://${host}/api/Game/StartGame`)
 			.then(response => {
 				console.log('test', response.data);
 				console.log('start');
+				this.startGame = true;
 				this.sum = 0;
+				this.counter = 0;
 				this.startNumber = +response.data.Range.split(" ", 1)[0];
 			})
 			.catch(e => {
@@ -168,3 +175,6 @@ export class Container extends Vue {
 		return isResizable;
 	}
 }
+/*
+send betAmount to startgame api call
+ */

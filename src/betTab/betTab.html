@@ -6,11 +6,11 @@
 
 		<div class="bet-field">
 			<div class="border-right">
-				<button v-on:click="changeBet(-100)">-</button>
+				<button :disabled="start" v-on:click="changeBet(-100)">-</button>
 			</div>
-			<input type="number" v-model="betAmount">
+			<input :disabled="start" type="number" v-model="betAmount">
 			<div class="border-left">
-				<button v-on:click="changeBet(100)">+</button>
+				<button :disabled="start" v-on:click="changeBet(100)">+</button>
 			</div>
 		</div>
 

@@ -564,10 +564,12 @@ textarea:focus {
 .topPanelSection {
   display: grid;
   line-height: 50px;
-  width: 70px;
   height: 100%;
   border-right: solid #4e4d4d;
   border-width: 0 1px;
+}
+.topPanel .topPanelSection {
+  width: 70px;
 }
 .topPanelSection:last-child {
   border-right: none;

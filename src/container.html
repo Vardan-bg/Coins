@@ -4,9 +4,17 @@
 
 		<div class="gj-table">
 			<div class="topPanel">
-				<div class="topPanelSection"></div>
+				<div class="topPanelSection">{{(startGame || counter == 3)? this.sum: ''}}</div>
 				<div class="topPanelSection">{{startNumber? startNumber + " - " + (startNumber+range):""}}</div>
 				<div class="topPanelSection">{{counter > 2? (win? 'Win': 'lose'): ''}}</div>
+			</div>
+			<div class="panels">
+				<div class="leftPanel">
+					<div class="topPanelSection">{{counter == 3? (win? (betValue * 3): ('- ' + betValue)): ''}}</div>
+				</div>
+				<div class="rightPanel">
+					<div class="topPanelSection">{{total}}</div>
+				</div>
 			</div>
 			<div class="all-coins">
 				<slot></slot>
@@ -21,8 +29,8 @@
 			</div>
 			<div class="buttons">
 				<bonusTab></bonusTab>
-				<betTab></betTab>
-				<startButtons v-bind:active = "this.counter == 2" v-bind:start = "startGame"></startButtons>
+				<betTab v-bind:betAmount="betValue" v-on:changeBet="betValue = $event" v-bind:start = "startGame"></betTab>
+				<startButtons v-bind:active = "this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range" v-bind:start = "startGame || this.betValue == 0"></startButtons>
 			</div>
 		</div>
 	</div>
