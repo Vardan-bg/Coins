@@ -29,7 +29,7 @@ export class Container extends Vue {
 	styleObject: any = "";
 	startGame: boolean = false;
 	bonusStarted: boolean = false;
-	bonusCount: number = 0;
+	bonusCount: Array<boolean> = [];
 	counter: number = 0;
 	cashout: any = "";
 	startNumber: number = null;
@@ -49,8 +49,8 @@ export class Container extends Vue {
 		startBus.$on('startBonus-event', this.startBonusEventHandler)
 	}
 	getHostName(): string {
-		const hostName = window.location.hostname;
-		const port = window.location.port;
+		const hostName = 'localhost' || window.location.hostname;
+		const port = 58272 || window.location.port;
 		return hostName + ':' + port;
 	}
 	getValue(value) {
@@ -61,8 +61,10 @@ export class Container extends Vue {
 			this.win = this.sum <= this.startNumber + this.range && this.sum >= this.startNumber;
 			this.stopGame();
 			if (this.bonusStarted) {
-				this.bonusCount++;
-				console.log(this.bonusCount, 'bonusCount');
+				this.bonusCount.push(this.win);
+				if(this.bonusCount.length == 5) {
+					this.bonusStarted = false;
+				}
 			}
 		}
 		console.log(this.total, this.betValue, 'stats');
@@ -75,7 +77,8 @@ export class Container extends Vue {
 		if (!this.startGame && !this.bonusStarted) {
 			this.startingGame();
 			this.bonusStarted = true;
-			this.bonusCount = 0;
+			this.bonusCount = [];
+			console.log(this.bonusCount, '5');
 		}
 	}
 
@@ -102,8 +105,7 @@ export class Container extends Vue {
 	}
 	startingGame() {
 		let host = this.getHostName();
-		axios.post(`http://localhost:58272/api/Game/StartGame`)
-			// axios.post(`http://${host}/api/Game/StartGame`)
+			axios.post(`http://${host}/api/Game/StartGame`)
 			.then(response => {
 				console.log('test', response.data);
 				console.log('start');

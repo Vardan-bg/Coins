@@ -591,15 +591,21 @@ textarea:focus {
   transition: 0.2s ease-in-out;
   background: #ffff00;
 }
-.bonus-block-number button.stage:nth-child(1) {
+.bonus-block-number button.stage.bonusActive {
   border: 1px solid white;
   box-shadow: 0px 0px 15px 3px #ffff007f;
 }
 
-.bonus-block-number button.stage:last-child {
+.bonus-block-number button.stage.gameWon {
   border: 1px solid #27cc07;
   background: #27cc07;
   box-shadow: 0px 0px 15px 3px #27cc077f;
+}
+
+.bonus-block-number button.stage.gameLost {
+  border: 1px solid #dd3721;
+  background: #dd3721;
+  box-shadow: 0px 0px 15px 3px #dd37217f;
 }
 
 .bet-field {

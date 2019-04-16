@@ -1,14 +1,14 @@
-import { Component, Prop  } from 'vue-typed'
+import { Component, Prop } from 'vue-typed'
 import Vue from 'vue'
 import startBus from './../events/StartBus'
-import {sortBy, forIn} from 'lodash';
+import { sortBy, forIn } from 'lodash';
 
 @Component({
 	props: ['order', 'gameStarted'],
 	template: require('./coin.html'),
 	watch: {
 		gameStarted: {
-			handler (after, before) {
+			handler(after, before) {
 				this.started = this.gameStarted;
 				if (this.gameStarted) {
 					this.value = 0;
@@ -17,13 +17,13 @@ import {sortBy, forIn} from 'lodash';
 					"pointer-events": "all",
 					"animation-name": "inherit"
 				};
-				if(after < before){
-					this.styleObject ={
+				if (after < before) {
+					this.styleObject = {
 						"pointer-events": "none",
-					"animation-name": "inherit"
+						"animation-name": "inherit"
 					}
 				}
-				if (before < after){
+				if (before < after) {
 					this.isActive = false;
 				}
 			}
@@ -39,16 +39,16 @@ export class Coin extends Vue {
 	values: Array<number> = [];
 	value: number = 0;
 
-	mounted(){
+	mounted() {
 		console.log(this.started, 'test');
 		//this.value = this.order;
 		startBus.$on('start-event', this.startEventHandler)
 	}
 
-	startEventHandler(){
+	startEventHandler() {
 		console.log('coin start event');
 	}
-	flip(event){
+	flip(event) {
 		this.styleObject = {
 			"pointer-events": "none"
 		};
@@ -58,27 +58,27 @@ export class Coin extends Vue {
 		this.$emit('clicked', this.value)
 	}
 
-	getOrder(){
+	getOrder() {
 		return this.values[this.order];
 	}
 	getCoins() {
 		let arr = [];
 		for (let i = 1; i < 21; i++) {
 			let rand = Math.floor(Math.random() * 200000) + 1;
-			arr.push({'value': rand, 'key': i});
+			arr.push({ 'value': rand, 'key': i });
 		}
 		let sorted = sortBy(arr, (node) => node.value)
 		Object.keys(arr).reduce((obj, key) => (obj[arr[key]] = key, obj), {});
 		let final = [];
-		forIn(sorted, (value, key) => {final[key] = value.key})
+		forIn(sorted, (value, key) => { final[key] = value.key })
 		return final;
 	}
 	// mounted(){
 	// 	// let vm = this;      
 
- //  //       vm.$nextTick(function () {      
- //  //          console.log(vm.order);
- //  //       });
+	//  //       vm.$nextTick(function () {      
+	//  //          console.log(vm.order);
+	//  //       });
 	// 	console.log(this.started,'gameStarted')
 	// }
 	// created(){
@@ -86,10 +86,10 @@ export class Coin extends Vue {
 	// }
 	// computed() {
 	// 	console.log(this.started,'gameStarted')
- //  	}
- //  	@watch('gameStarted') 
+	//  	}
+	//  	@watch('gameStarted') 
 	// 	onPropertyChanged(newVal, oldVal) { // watch it
- //      console.log('Prop changed: ', newVal, ' | was: ', oldVal)
- //    }
-	
+	//      console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+	//    }
+
 }

@@ -20,17 +20,18 @@
 				<slot></slot>
 				<div class="coins">
 					<div class="container">
-						<coin v-bind:gameStarted = "startGame" v-for="coin in coins" 
-						v-bind:order = "coin" 
-						v-bind:key="coin"
-						@clicked = "getValue">{{coin}}</coin>
+						<coin v-bind:gameStarted="startGame" v-for="coin in coins" v-bind:order="coin" v-bind:key="coin"
+							@clicked="getValue">{{coin}}</coin>
 					</div>
 				</div>
 			</div>
 			<div class="buttons">
-				<bonusTab></bonusTab>
-				<betTab v-bind:betAmount="betValue" v-on:changeBet="betValue = $event" v-bind:start = "startGame"></betTab>
-				<startButtons v-bind:active = "this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range" v-bind:start = "startGame || this.betValue == 0"></startButtons>
+				<bonusTab v-bind:bonusGames="bonusCount" v-bind:isActive="bonusStarted"></bonusTab>
+				<betTab v-bind:betAmount="betValue" v-on:changeBet="betValue = $event" v-bind:start="startGame">
+				</betTab>
+				<startButtons
+					v-bind:active="this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range"
+					v-bind:start="startGame || this.betValue == 0"></startButtons>
 			</div>
 		</div>
 	</div>
