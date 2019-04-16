@@ -58,13 +58,13 @@ export class Container extends Vue {
 		this.counter++;
 		this.sum += value;
 		if (this.counter > 2) {
+			this.win = this.sum <= this.startNumber + this.range && this.sum >= this.startNumber;
 			this.stopGame();
 			if (this.bonusStarted) {
 				this.bonusCount++;
 				console.log(this.bonusCount, 'bonusCount');
 			}
 		}
-		this.win = this.sum <= this.startNumber + this.range && this.sum >= this.startNumber;
 		console.log(this.total, this.betValue, 'stats');
 		if (this.win)
 			this.total += +this.betValue * 3;
@@ -97,16 +97,17 @@ export class Container extends Vue {
 		if (!this.startGame && this.betValue > 0) {
 			this.total -= this.betValue;
 			this.startingGame();
-			// this.getRange();
+			//this.getRange();
 		}
 	}
 	startingGame() {
 		let host = this.getHostName();
-		// axios.post(`http://localhost:58272/api/Game/StartGame`)
-			axios.post(`http://${host}/api/Game/StartGame`)
+		axios.post(`http://localhost:58272/api/Game/StartGame`)
+			// axios.post(`http://${host}/api/Game/StartGame`)
 			.then(response => {
 				console.log('test', response.data);
 				console.log('start');
+				this.win = false;
 				this.startGame = true;
 				this.sum = 0;
 				this.counter = 0;
@@ -117,6 +118,10 @@ export class Container extends Vue {
 			});
 	}
 	getRange() {
+		this.win = false;
+		this.startGame = true;
+		this.sum = 0;
+		this.counter = 0;
 		this.startNumber = Math.floor(Math.random() * 10) + 15;
 		console.log('startNumber', this.startNumber);
 	}
