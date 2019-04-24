@@ -99,8 +99,8 @@ export class Container extends Vue {
 	startEventHandler() {
 		if (!this.startGame && this.betValue > 0) {
 			this.total -= this.betValue;
-			//this.startingGame();
-			this.getRange();
+			this.startingGame();
+			//this.getRange();
 		}
 	}
 	startingGame() {
