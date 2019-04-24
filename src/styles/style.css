@@ -1,82 +1,4 @@
-a,
-abbr,
-acronym,
-address,
-applet,
-article,
-aside,
-audio,
-big,
-blockquote,
-body,
-canvas,
-caption,
-center,
-cite,
-code,
-dd,
-del,
-details,
-dfn,
-div,
-dl,
-dt,
-em,
-embed,
-fieldset,
-figcaption,
-figure,
-footer,
-form,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-header,
-hgroup,
-html,
-iframe,
-img,
-ins,
-kbd,
-label,
-legend,
-li,
-mark,
-menu,
-nav,
-object,
-ol,
-output,
-p,
-pre,
-q,
-ruby,
-s,
-samp,
-section,
-small,
-span,
-strike,
-strong,
-sub,
-summary,
-sup,
-table,
-tbody,
-td,
-tfoot,
-th,
-thead,
-time,
-tr,
-tt,
-u,
-ul,
-var,
-video {
+a, abbr, acronym, address, applet, article, aside, audio, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -89,16 +11,7 @@ video {
   -webkit-text-size-adjust: auto !important;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-menu,
-nav,
-section {
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
   display: block;
 }
 
@@ -115,35 +28,28 @@ body {
   word-wrap: break-word;
 }
 
-ol,
-ul {
+ol, ul {
   list-style: none;
 }
 
-html,
-body {
+html, body {
   margin: 0 !important;
 }
-a:focus,
-button:focus,
-input:focus,
-textarea:focus {
+
+a:focus, button:focus, input:focus, textarea:focus {
   outline: none;
 }
 
 @font-face {
   font-family: "Aachen";
-  src: url("../fonts/Aachen.eot?#iefix") format("embedded-opentype"), url("../fonts/Aachen.woff") format("woff"),
-    url("../fonts/Aachen.ttf") format("truetype"), url("../fonts/Aachen.svg#Aachen") format("svg");
+  src: url("../fonts/Aachen.eot?#iefix") format("embedded-opentype"), url("../fonts/Aachen.woff") format("woff"), url("../fonts/Aachen.ttf") format("truetype"), url("../fonts/Aachen.svg#Aachen") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "AachenBT-Bold";
-  src: url("../fonts/AachenBT-Bold.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/AachenBT-Bold.woff") format("woff"), url("../fonts/AachenBT-Bold.ttf") format("truetype"),
-    url("../fonts/AachenBT-Bold.svg#AachenBT-Bold") format("svg");
+  src: url("../fonts/AachenBT-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/AachenBT-Bold.woff") format("woff"), url("../fonts/AachenBT-Bold.ttf") format("truetype"), url("../fonts/AachenBT-Bold.svg#AachenBT-Bold") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -202,13 +108,11 @@ textarea:focus {
   transition: left 2s;
 }
 
-.coins.line1,
-.coins.line3 {
+.coins.line1, .coins.line3 {
   left: -100%;
 }
 
-.coins.line2,
-.coins.line4 {
+.coins.line2, .coins.line4 {
   right: -100%;
 }
 
@@ -257,7 +161,7 @@ textarea:focus {
   justify-content: space-between;*/
 }
 
-.container > div {
+.container>div {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -284,7 +188,7 @@ textarea:focus {
   backface-visibility: hidden;
 }
 
-.container > div.active {
+.container>div.active {
   animation-name: rotationSmall !important;
   animation-iteration-count: 2;
   animation-timing-function: linear;
@@ -314,72 +218,42 @@ textarea:focus {
   transform: rotateY(180deg);
 }
 
-.coin1,
-.coin2,
-.coin3,
-.coin4,
-.coin5 {
+.coin1, .coin2, .coin3, .coin4, .coin5 {
   top: 0;
 }
 
-.coin6,
-.coin7,
-.coin8,
-.coin9,
-.coin10 {
+.coin6, .coin7, .coin8, .coin9, .coin10 {
   top: 150px;
 }
 
-.coin11,
-.coin12,
-.coin13,
-.coin14,
-.coin15 {
+.coin11, .coin12, .coin13, .coin14, .coin15 {
   top: 300px;
 }
 
-.coin16,
-.coin17,
-.coin18,
-.coin19,
-.coin20 {
+.coin16, .coin17, .coin18, .coin19, .coin20 {
   top: 450px;
 }
 
-.coin1,
-.coin6,
-.coin11,
-.coin16 {
+.coin1, .coin6, .coin11, .coin16 {
   left: 0;
 }
 
-.coin2,
-.coin7,
-.coin12,
-.coin17 {
+.coin2, .coin7, .coin12, .coin17 {
   left: 200px;
 }
 
-.coin3,
-.coin8,
-.coin13,
-.coin18 {
+.coin3, .coin8, .coin13, .coin18 {
   left: 400px;
 }
 
-.coin4,
-.coin9,
-.coin14,
-.coin19 {
+.coin4, .coin9, .coin14, .coin19 {
   left: 600px;
 }
 
-.coin5,
-.coin10,
-.coin15,
-.coin20 {
+.coin5, .coin10, .coin15, .coin20 {
   left: 800px;
 }
+
 .container .coinDefault {
   animation-name: pulse !important;
   animation-timing-function: linear;
@@ -387,17 +261,14 @@ textarea:focus {
   transition: 0.2s;
   animation-iteration-count: 1;
 }
-@keyframes pulse {
-  0% {
-  }
 
+@keyframes pulse {
+  0% {}
   50% {
     top: 225px;
     left: 400px;
   }
-
-  100% {
-  }
+  100% {}
 }
 
 .tails0 {
@@ -498,8 +369,7 @@ textarea:focus {
   display: flex;
 }
 
-.bet-block .bet-block-count .bet-field,
-.bonus-block-number {
+.bet-block .bet-block-count .bet-field, .bonus-block-number {
   width: 250px;
   height: 38px;
   background-color: #1a2636;
@@ -508,6 +378,7 @@ textarea:focus {
   -webkit-box-shadow: inset 0 0 9px #0a121c;
   box-shadow: inset 0 0 9px #0a121c;
 }
+
 .bonus-block-number {
   width: 265px;
 }
@@ -517,7 +388,8 @@ textarea:focus {
   clear: both;
   display: table;
 }
-.bonus-block > div {
+
+.bonus-block>div {
   display: inline-flex;
 }
 
@@ -544,6 +416,7 @@ textarea:focus {
   cursor: pointer;
   color: white;
 }
+
 .ok-button:active {
   margin-top: 3px;
 }
@@ -553,7 +426,7 @@ textarea:focus {
   display: flex;
   position: absolute;
   box-shadow: inset 0 0 10px black;
-  width: 210px;
+  width: 170px;
   height: 50px;
   background-color: #151f2d;
   border-radius: 15px;
@@ -561,16 +434,19 @@ textarea:focus {
   color: white;
   top: 112px;
 }
+
 .topPanelSection {
-  display: grid;
+  display: block;
   line-height: 50px;
   height: 100%;
   border-right: solid #4e4d4d;
   border-width: 0 1px;
 }
+
 .topPanel .topPanelSection {
-  width: 70px;
+  width: 85px;
 }
+
 .topPanelSection:last-child {
   border-right: none;
 }
@@ -591,6 +467,7 @@ textarea:focus {
   transition: 0.2s ease-in-out;
   background: #ffff00;
 }
+
 .bonus-block-number button.stage.bonusActive {
   border: 1px solid white;
   box-shadow: 0px 0px 15px 3px #ffff007f;
@@ -609,8 +486,9 @@ textarea:focus {
 }
 
 .bet-field {
-	display: inline-flex;
+  display: inline-flex;
 }
+
 .bet-field button {
   border: none;
   width: 40px;
@@ -624,14 +502,15 @@ textarea:focus {
   color: white;
 }
 
-.bet-field > div {
-	width: 40px;
-	height: 40px;
-	display: inline-flex;
+.bet-field>div {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
 }
+
 .bet-field button:active {
-	margin-top: 3px;
-	height: 37px;
+  margin-top: 3px;
+  height: 37px;
 }
 
 .border-left {
@@ -639,6 +518,7 @@ textarea:focus {
   border-left: solid #4e4d4d;
   border-width: 0 1px;
 }
+
 .border-right {
   border: none;
   border-right: solid #4e4d4d;
@@ -648,24 +528,56 @@ textarea:focus {
 .bet-field input {
   background: none;
   border: none;
-	line-height: 38px;
-	width: 170px;
-	font-size: 26px;
-	color: white;
-	text-align: center;
+  line-height: 38px;
+  width: 170px;
+  font-size: 26px;
+  color: white;
+  text-align: center;
 }
-.bet-field input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+
+.bet-field input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 .start-buttons {
   height: 80px;
   width: 295px;
 }
+
 .start-buttons .wooden {
   position: absolute;
 }
+
 #randomize {
   right: 0;
+}
+
+.overlay {
+  width: 100%;
+  height: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  display: none;
+}
+
+.overlayActive {
+  display: block;
+}
+
+.overlayActive > div{
+  margin: 0;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  color: white;
+}
+div.redOverlay{
+  color: red;
+}
+div.greenOverlay{
+  color: green;
 }

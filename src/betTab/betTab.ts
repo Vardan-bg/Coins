@@ -28,9 +28,9 @@ export class BetTab extends Vue {
 		if ([46, 8, 9, 27, 13, 110].indexOf(event.keyCode) !== -1 ||
 			// Allow: Ctrl+A
 			(event.keyCode == 65 && event.ctrlKey === true) ||
-			// Allow: Ctrl+A
+			// Allow: Ctrl+f
 			(event.keyCode == 70 && event.ctrlKey === true) ||
-			// Allow: Ctrl+A
+			// Allow: Ctrl+r
 			(event.keyCode == 82 && event.ctrlKey === true) ||
 			// Allow: home, end, left, right
 			(event.keyCode >= 35 && event.keyCode <= 39)) {

@@ -14,7 +14,8 @@ import startBus from '../events/StartBus'
 	}
 })
 export class BonusTab extends Vue {
+	bonusGames: Array<boolean>;
 	startBonusGame(event){
-		startBus.$emit('startBonus-event');
+		startBus.$emit('startBonus-event', this.bonusGames);
 	}
 }

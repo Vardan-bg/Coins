@@ -4,9 +4,11 @@
 
 		<div class="gj-table">
 			<div class="topPanel">
-				<div class="topPanelSection">{{(startGame || counter == 3)? this.sum: ''}}</div>
-				<div class="topPanelSection">{{startNumber? startNumber + " - " + (startNumber+range):""}}</div>
-				<div class="topPanelSection">{{counter > 2? (win? 'Win': 'lose'): ''}}</div>
+				<div class="topPanelSection" :class="['topPanelSection',
+				{ redOverlay: counter > 0 && (sum > startNumber + range || sum < startNumber) },
+				{ greenOverlay: counter > 0 && sum <= startNumber + range && sum >= startNumber }]">{{startNumber? startNumber + " - " + (startNumber+range):""}}</div>
+				<div class="topPanelSection">{{(startGame || counter == 3)? sum: ''}}</div>
+				<!-- <div class="topPanelSection">{{counter > 2? (win? 'Win': 'lose'): ''}}</div> -->
 			</div>
 			<div class="panels">
 				<div class="leftPanel">
@@ -32,6 +34,9 @@
 				<startButtons
 					v-bind:active="this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range"
 					v-bind:start="startGame || this.betValue == 0"></startButtons>
+			</div>
+			<div :class="['overlay', { overlayActive: counter > 2 }]">
+				<div :class="[win? 'greenOverlay': 'redOverlay']">{{win? 'You Won': 'You Lost'}}</div>
 			</div>
 		</div>
 	</div>

@@ -10,7 +10,7 @@
 			<button class="stage" :class="[{bonusActive: (isActive && bonusGames.length === 4), gameWon: (bonusGames && bonusGames[4]), gameLost: (bonusGames && bonusGames[4] == false)}]">5</button>
 		</div>
 		<div class="border-left">
-			<button class="ok-button" v-on:click="startBonusGame">Ok</button>
+			<button class="ok-button" v-on:click="startBonusGame">{{isActive ? 'Off' : 'On'}}</button>
 		</div>
 	</div>
 
