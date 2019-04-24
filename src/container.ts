@@ -62,7 +62,7 @@ export class Container extends Vue {
 			this.stopGame();
 			if (this.bonusStarted) {
 				this.bonusCount.push(this.win);
-				if(this.bonusCount.length == 5) {
+				if (this.bonusCount.length == 5) {
 					this.bonusStarted = false;
 				}
 			}
@@ -105,19 +105,24 @@ export class Container extends Vue {
 	}
 	startingGame() {
 		let host = this.getHostName();
-			axios.post(`http://${host}/api/Game/StartGame`)
-			.then(response => {
-				console.log('test', response.data);
-				console.log('start');
-				this.win = false;
-				this.startGame = true;
-				this.sum = 0;
-				this.counter = 0;
-				this.startNumber = +response.data.Range.split(" ", 1)[0];
-			})
-			.catch(e => {
-				console.log('test2', e)
-			});
+		axios.post(`http://${host}/api/Game/StartGame`, {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(response => {
+			console.log('test', response.data);
+			console.log('start');
+			this.win = false;
+			this.startGame = true;
+			this.sum = 0;
+			this.counter = 0;
+			this.startNumber = +response.data.Range.split(" ", 1)[0];
+		})
+		.catch(e => {
+			console.log('test2', e)
+		});
 	}
 	getRange() {
 		this.win = false;
@@ -186,6 +191,6 @@ export class Container extends Vue {
 send betAmount to startgame api call and if game is bonus or not
 get coin number Value on click.
 on cashout check if i can cashout then give fixed total value
-initial call on open page to get: current Cash; if game is in progress in which stage it is 
+initial call on open page to get: current Cash; if game is in progress in which stage it is
 	(current bet, current top range values, coins opened - their values and positions, bonus game stages, their results)
  */
