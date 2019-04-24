@@ -50,7 +50,7 @@ export class Container extends Vue {
 	}
 	getHostName(): string {
 		const hostName = 'localhost' || window.location.hostname;
-		const port = 58272 || window.location.port;
+		const port = 53599 || window.location.port;
 		return hostName + ':' + port;
 	}
 	getValue(value) {
