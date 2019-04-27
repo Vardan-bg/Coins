@@ -47,6 +47,7 @@ export class Container extends Vue {
 		}
 	}
 	game: GameModel = new GameModel;
+	response: GameModel = new GameModel;
 
 	mounted() {
 		console.log(this.getHostName());
@@ -96,10 +97,16 @@ export class Container extends Vue {
 
 	cashOutEventHandler() {
 		if (this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range) {
-			this.counter = 0;
-			this.total += +this.betValue;
-			console.log('cashOut', this.counter);
-			this.stopGame();
+			axios.post(`http://${this.host}/api/Game/CashBack`, this.headers)
+				.then(response => {
+					this.counter = 0;
+					this.total += +this.betValue;
+					console.log('cashOut', this.counter);
+					this.stopGame();
+				})
+				.catch(e => {
+					console.log('test2', e)
+				});
 		}
 	}
 
@@ -118,15 +125,15 @@ export class Container extends Vue {
 	startingGame() {
 		let host = this.getHostName();
 		this.game.Bet = this.betValue;
-		axios.post(`http://${host}/api/Game/StartGame`, this.game, this.headers)
+		axios.post(`http://${this.host}/api/Game/StartGame`, this.game, this.headers)
 			.then(response => {
-				console.log('test', response.data);
-				console.log('start');
 				this.win = false;
 				this.startGame = true;
 				this.sum = 0;
 				this.counter = 0;
-				this.startNumber = +response.data.Range.split(" ", 1)[0];
+				this.startNumber = +response.data.startRange;
+				this.range = +response.data.endRange - response.data.startRange;
+				this.response = response.data;
 			})
 			.catch(e => {
 				console.log('test2', e)
@@ -195,10 +202,3 @@ export class Container extends Vue {
 		return isResizable;
 	}
 }
-/*
-send betAmount to startgame api call and if game is bonus or not
-get coin number Value on click.
-on cashout check if i can cashout then give fixed total value
-initial call on open page to get: current Cash; if game is in progress in which stage it is
-	(current bet, current top range values, coins opened - their values and positions, bonus game stages, their results)
- */
