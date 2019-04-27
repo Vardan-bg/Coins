@@ -38,6 +38,12 @@ export class Container extends Vue {
 	host: string = '';
 	betValue: number = 100;
 	total: number = 1000000;
+	headers: any= {
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	}
 
 	mounted() {
 		console.log(this.getHostName());
@@ -52,6 +58,9 @@ export class Container extends Vue {
 		const hostName = 'localhost' || window.location.hostname;
 		const port = 53599 || window.location.port;
 		return hostName + ':' + port;
+	}
+	request() {
+		
 	}
 	getValue(value) {
 		console.log(value, 'value');
@@ -105,24 +114,19 @@ export class Container extends Vue {
 	}
 	startingGame() {
 		let host = this.getHostName();
-		axios.post(`http://${host}/api/Game/StartGame`, {
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
-		})
-		.then(response => {
-			console.log('test', response.data);
-			console.log('start');
-			this.win = false;
-			this.startGame = true;
-			this.sum = 0;
-			this.counter = 0;
-			this.startNumber = +response.data.Range.split(" ", 1)[0];
-		})
-		.catch(e => {
-			console.log('test2', e)
-		});
+		axios.post(`http://${host}/api/Game/StartGame`, {bet: this.betValue}, this.headers)
+			.then(response => {
+				console.log('test', response.data);
+				console.log('start');
+				this.win = false;
+				this.startGame = true;
+				this.sum = 0;
+				this.counter = 0;
+				this.startNumber = +response.data.Range.split(" ", 1)[0];
+			})
+			.catch(e => {
+				console.log('test2', e)
+			});
 	}
 	getRange() {
 		this.win = false;
