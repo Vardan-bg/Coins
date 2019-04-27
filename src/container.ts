@@ -6,8 +6,10 @@ import { BetTab } from './betTab/betTab'
 import { StartButtons } from './startButtons/startButtons'
 import './styles/style.css';
 import './styles/elements.scss';
-import startBus from './events/StartBus'
+import startBus from './events/StartBus';
 import axios from 'axios';
+import { GameModel } from './model/gameModel';
+
 
 Vue.component('coin', Coin)
 Vue.component('bonusTab', BonusTab)
@@ -44,6 +46,7 @@ export class Container extends Vue {
 			'Content-Type': 'application/json'
 		}
 	}
+	game: GameModel = new GameModel;
 
 	mounted() {
 		console.log(this.getHostName());
@@ -114,7 +117,8 @@ export class Container extends Vue {
 	}
 	startingGame() {
 		let host = this.getHostName();
-		axios.post(`http://${host}/api/Game/StartGame`, {bet: this.betValue}, this.headers)
+		this.game.Bet = this.betValue;
+		axios.post(`http://${host}/api/Game/StartGame`, this.game, this.headers)
 			.then(response => {
 				console.log('test', response.data);
 				console.log('start');
