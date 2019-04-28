@@ -52,6 +52,7 @@ export class Coin extends Vue {
 	headers: any;
 
 	mounted() {
+		this.printedValue = this.order;
 		console.log(this.started, 'test');
 		//this.value = this.order;
 		startBus.$on('start-event', this.startEventHandler);

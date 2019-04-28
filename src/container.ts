@@ -47,7 +47,7 @@ export class Container extends Vue {
 
 	mounted() {
 		for (let index = 1; index <= 20; index++) {
-			this.coins.push({order: index, value: 0});
+			this.coins.push({ order: index, value: 0 });
 		}
 		this.host = getHostName();
 		this.initResize();
@@ -71,8 +71,16 @@ export class Container extends Vue {
 			this.range = +response.endRange - response.startRange;
 		this.bonusStarted = response.isBonusGame;
 		this.total = response.userBalance;
-		for (let index = 0; index <= response.coins; index++) {
-			this.coins.push({order: index, value: 0});
+		for (let index = 0; index < response.coins.length; index++) {
+			this.startGame = true;
+			this.coins[response.coins[index].position - 1]['value'] = response.coins[index].value;
+			this.counter++;
+			this.sum += response.coins[index].value;
+			console.log('this.counter',this.counter);
+			if (this.counter > 2) {
+				this.win = this.sum <= response.endRange && this.sum >= response.startRange;
+				this.startGame = false;
+			}
 		}
 	}
 
@@ -80,7 +88,7 @@ export class Container extends Vue {
 
 	}
 	getValue(order) {
-		axios.post(`http://${this.host}/api/Game/getcoin`, {Position: order, GameId: this.response.id}, this.headers)
+		axios.post(`http://${this.host}/api/Game/getcoin`, { Position: order, GameId: this.response.id }, this.headers)
 			.then(response => {
 				this.coins[order - 1]['value'] = response.data.value;
 				let value = response.data.value;
