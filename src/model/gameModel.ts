@@ -1,6 +1,6 @@
 export class GameModel
 {
-    public Id: number ;
+    public id: number ;
 
     public UserId: number ;
 

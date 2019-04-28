@@ -2,16 +2,18 @@ import { Component, Prop } from 'vue-typed'
 import Vue from 'vue'
 import startBus from './../events/StartBus'
 import { sortBy, forIn } from 'lodash';
+import axios from 'axios';
+import { headers, getHostName } from './../config'
 
 @Component({
-	props: ['order', 'gameStarted'],
+	props: ['order', 'gameStarted', 'value'],
 	template: require('./coin.html'),
 	watch: {
 		gameStarted: {
 			handler(after, before) {
 				this.started = this.gameStarted;
 				if (this.gameStarted) {
-					this.value = 0;
+					this.printedValue = 0;
 				}
 				this.styleObject = {
 					"pointer-events": "all",
@@ -27,6 +29,13 @@ import { sortBy, forIn } from 'lodash';
 					this.isActive = false;
 				}
 			}
+		},
+		value: {
+			handler(after, before) {
+				this.printedValue = after;
+				this.isActive = true;
+				console.log('handler', after);
+			}
 		}
 	}
 })
@@ -37,12 +46,17 @@ export class Coin extends Vue {
 	started: boolean = false;
 	order: number;
 	values: Array<number> = [];
-	value: number = 0;
+	value: number;
+	printedValue: number = 0;
+	host: string;
+	headers: any;
 
 	mounted() {
 		console.log(this.started, 'test');
 		//this.value = this.order;
-		startBus.$on('start-event', this.startEventHandler)
+		startBus.$on('start-event', this.startEventHandler);
+		this.host = getHostName();
+		this.headers = headers;
 	}
 
 	startEventHandler() {
@@ -52,27 +66,19 @@ export class Coin extends Vue {
 		this.styleObject = {
 			"pointer-events": "none"
 		};
-		this.isActive = true;
-		this.value = Math.floor(Math.random() * 20) + 1;
-		//this.value = this.getOrder();
-		this.$emit('clicked', this.value)
+		this.$emit('clicked', this.order);
+		// axios.post(`http://${this.host}/api/Game/getcoin`, {Position: this.order}, this.headers)
+		// 	.then(response => {
+		// 		console.log('response', response);
+		// 		this.isActive = true;
+		// 		this.value = response.data.value;
+		// 		//this.value = this.getOrder();
+		// 	})
+		// 	.catch(e => {
+		// 		console.log('test2', e)
+		// 	});
 	}
 
-	getOrder() {
-		return this.values[this.order];
-	}
-	getCoins() {
-		let arr = [];
-		for (let i = 1; i < 21; i++) {
-			let rand = Math.floor(Math.random() * 200000) + 1;
-			arr.push({ 'value': rand, 'key': i });
-		}
-		let sorted = sortBy(arr, (node) => node.value)
-		Object.keys(arr).reduce((obj, key) => (obj[arr[key]] = key, obj), {});
-		let final = [];
-		forIn(sorted, (value, key) => { final[key] = value.key })
-		return final;
-	}
 	// mounted(){
 	// 	// let vm = this;      
 

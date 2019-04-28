@@ -22,8 +22,8 @@
 				<slot></slot>
 				<div class="coins">
 					<div class="container">
-						<coin v-bind:gameStarted="startGame" v-for="coin in coins" v-bind:order="coin" v-bind:key="coin"
-							@clicked="getValue">{{coin}}</coin>
+						<coin v-bind:gameStarted="startGame" v-for="coin in coins" v-bind:order="coin.order" v-bind:value="coin.value"
+							@clicked="getValue">{{coin.order}}</coin>
 					</div>
 				</div>
 			</div>

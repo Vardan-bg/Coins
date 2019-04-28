@@ -9,6 +9,7 @@ import './styles/elements.scss';
 import startBus from './events/StartBus';
 import axios from 'axios';
 import { GameModel } from './model/gameModel';
+import { headers, getHostName } from './config'
 
 
 Vue.component('coin', Coin)
@@ -26,7 +27,7 @@ export class Container extends Vue {
 	// options: any;
 
 	sum: Number = 0;
-	coins: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	coins: Array<any> = [];
 
 	styleObject: any = "";
 	startGame: boolean = false;
@@ -40,50 +41,67 @@ export class Container extends Vue {
 	host: string = '';
 	betValue: number = 100;
 	total: number = 1000000;
-	headers: any= {
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		}
-	}
+	headers: any = headers;
 	game: GameModel = new GameModel;
 	response: GameModel = new GameModel;
 
 	mounted() {
-		console.log(this.getHostName());
-		this.host = this.getHostName();
-		this.initResize();
-		window.addEventListener('resize', this.initResize)
-		startBus.$on('start-event', this.startEventHandler)
-		startBus.$on('cashOut-event', this.cashOutEventHandler)
-		startBus.$on('startBonus-event', this.startBonusEventHandler)
-	}
-	getHostName(): string {
-		const hostName = 'localhost' || window.location.hostname;
-		const port = 53599 || window.location.port;
-		return hostName + ':' + port;
-	}
-	request() {
-		
-	}
-	getValue(value) {
-		console.log(value, 'value');
-		this.counter++;
-		this.sum += value;
-		if (this.counter > 2) {
-			this.win = this.sum <= this.startNumber + this.range && this.sum >= this.startNumber;
-			this.stopGame();
-			if (this.bonusStarted) {
-				this.bonusCount.push(this.win);
-				if (this.bonusCount.length == 5) {
-					this.bonusStarted = false;
-				}
-			}
+		for (let index = 1; index <= 20; index++) {
+			this.coins.push({order: index, value: 0});
 		}
-		console.log(this.total, this.betValue, 'stats');
-		if (this.win)
-			this.total += +this.betValue * 3;
-		console.log(this.counter, value, this.sum, this.win);
+		this.host = getHostName();
+		this.initResize();
+		window.addEventListener('resize', this.initResize);
+		startBus.$on('start-event', this.startEventHandler);
+		startBus.$on('cashOut-event', this.cashOutEventHandler);
+		startBus.$on('startBonus-event', this.startBonusEventHandler);
+		axios.get(`http://${this.host}/api/Game/GetGame`, this.headers)
+			.then(response => {
+				this.response = response.data;
+				this.mapState(response.data);
+			})
+			.catch(e => {
+				console.log('test2', e)
+			});
+	}
+	mapState(response) {
+		this.betValue = (response.bet) ? response.bet : 100;
+		this.startNumber = response.startRange;
+		if (this.startNumber)
+			this.range = +response.endRange - response.startRange;
+		this.bonusStarted = response.isBonusGame;
+		this.total = response.userBalance;
+		for (let index = 0; index <= response.coins; index++) {
+			this.coins.push({order: index, value: 0});
+		}
+	}
+
+	request() {
+
+	}
+	getValue(order) {
+		axios.post(`http://${this.host}/api/Game/getcoin`, {Position: order, GameId: this.response.id}, this.headers)
+			.then(response => {
+				this.coins[order - 1]['value'] = response.data.value;
+				let value = response.data.value;
+				this.counter++;
+				this.sum += value;
+				if (this.counter > 2) {
+					this.win = this.sum <= this.startNumber + this.range && this.sum >= this.startNumber;
+					this.stopGame();
+					if (this.bonusStarted) {
+						this.bonusCount.push(this.win);
+						if (this.bonusCount.length == 5) {
+							this.bonusStarted = false;
+						}
+					}
+				}
+				if (this.win)
+					this.total += +this.betValue * 3;
+			})
+			.catch(e => {
+				console.log('test2', e)
+			});
 	}
 
 	startBonusEventHandler(bonusGames) {
@@ -91,7 +109,6 @@ export class Container extends Vue {
 			this.startingGame();
 			this.bonusStarted = true;
 			this.bonusCount = [];
-			console.log(this.bonusCount, '5');
 		}
 	}
 
@@ -101,7 +118,6 @@ export class Container extends Vue {
 				.then(response => {
 					this.counter = 0;
 					this.total += +this.betValue;
-					console.log('cashOut', this.counter);
 					this.stopGame();
 				})
 				.catch(e => {
@@ -112,7 +128,6 @@ export class Container extends Vue {
 
 	stopGame() {
 		this.startGame = false;
-		console.log
 	}
 
 	startEventHandler() {
@@ -123,7 +138,9 @@ export class Container extends Vue {
 		}
 	}
 	startingGame() {
-		let host = this.getHostName();
+		for (let index = 1; index <= 20; index++) {
+			this.coins[index - 1]['value'] = 0;
+		}
 		this.game.Bet = this.betValue;
 		axios.post(`http://${this.host}/api/Game/StartGame`, this.game, this.headers)
 			.then(response => {
@@ -145,7 +162,6 @@ export class Container extends Vue {
 		this.sum = 0;
 		this.counter = 0;
 		this.startNumber = Math.floor(Math.random() * 10) + 15;
-		console.log('startNumber', this.startNumber);
 	}
 	initResize() {
 
