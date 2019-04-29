@@ -66,20 +66,20 @@ export class Container extends Vue {
 	}
 	mapState(response) {
 		this.betValue = (response.bet) ? response.bet : 100;
-		this.startNumber = response.startRange;
-		if (this.startNumber)
-			this.range = +response.endRange - response.startRange;
+		this.startGame = !response.isEnded;
 		this.bonusStarted = response.isBonusGame;
 		this.total = response.userBalance;
-		for (let index = 0; index < response.coins.length; index++) {
-			this.startGame = true;
-			this.coins[response.coins[index].position - 1]['value'] = response.coins[index].value;
-			this.counter++;
-			this.sum += response.coins[index].value;
-			console.log('this.counter',this.counter);
-			if (this.counter > 2) {
-				this.win = this.sum <= response.endRange && this.sum >= response.startRange;
-				this.startGame = false;
+		if (this.startGame) {
+			this.startNumber = response.startRange;
+			this.range = +response.endRange - response.startRange;
+			for (let index = 0; index < response.coins.length; index++) {
+				this.coins[response.coins[index].position - 1]['value'] = response.coins[index].value;
+				this.counter++;
+				this.sum += response.coins[index].value;
+				console.log('this.counter', this.counter);
+				if (this.counter > 2) {
+					this.win = this.sum <= response.endRange && this.sum >= response.startRange;
+				}
 			}
 		}
 	}
@@ -90,6 +90,7 @@ export class Container extends Vue {
 	getValue(order) {
 		axios.post(`http://${this.host}/api/Game/getcoin`, { Position: order, GameId: this.response.id }, this.headers)
 			.then(response => {
+				this.response = response.data.game;
 				this.coins[order - 1]['value'] = response.data.value;
 				let value = response.data.value;
 				this.counter++;
@@ -122,7 +123,7 @@ export class Container extends Vue {
 
 	cashOutEventHandler() {
 		if (this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range) {
-			axios.post(`http://${this.host}/api/Game/CashBack`, this.headers)
+			axios.post(`http://${this.host}/api/Game/CashBack`, this.response, this.headers)
 				.then(response => {
 					this.counter = 0;
 					this.total += +this.betValue;
@@ -152,6 +153,7 @@ export class Container extends Vue {
 		this.game.Bet = this.betValue;
 		axios.post(`http://${this.host}/api/Game/StartGame`, this.game, this.headers)
 			.then(response => {
+				this.response = response.data;
 				this.win = false;
 				this.startGame = true;
 				this.sum = 0;
