@@ -115,8 +115,11 @@ export class Container extends Vue {
 
 	startBonusEventHandler(bonusGames) {
 		if (!this.startGame && !this.bonusStarted) {
-			this.startingGame();
+			// this.startingGame();
 			this.bonusStarted = true;
+			this.bonusCount = [];
+		} else if (!this.startGame && this.bonusStarted) {
+			this.bonusStarted = false;
 			this.bonusCount = [];
 		}
 	}
