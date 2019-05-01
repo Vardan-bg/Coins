@@ -57,8 +57,18 @@ export class Container extends Vue {
 		startBus.$on('startBonus-event', this.startBonusEventHandler);
 		axios.get(`http://${this.host}/api/Game/GetGame`, this.headers)
 			.then(response => {
-				this.response = response.data;
-				this.mapState(response.data);
+				if(!Array.isArray(this.response)) {
+					for (let index = 0; index < response.data.length; index++) {
+						const element = response.data[index];
+						console.log('test2', element)
+						this.response = element;
+						this.mapState(element);
+						
+					}
+				} else {
+					this.response = response.data;
+					this.mapState(response.data);
+				}
 			})
 			.catch(e => {
 				console.log('test2', e)
@@ -68,6 +78,9 @@ export class Container extends Vue {
 		this.betValue = (response.bet) ? response.bet : 100;
 		this.startGame = !response.isEnded;
 		this.bonusStarted = response.isBonusGame;
+		if (this.bonusStarted) {
+			this.bonusCount.push(response.isWin);
+		}
 		this.total = response.userBalance;
 		if (this.startGame) {
 			this.startNumber = response.startRange;
@@ -154,6 +167,7 @@ export class Container extends Vue {
 			this.coins[index - 1]['value'] = 0;
 		}
 		this.game.Bet = this.betValue;
+		this.game.IsBonusGame = this.bonusStarted;
 		axios.post(`http://${this.host}/api/Game/StartGame`, this.game, this.headers)
 			.then(response => {
 				this.response = response.data;
