@@ -20,7 +20,7 @@
 			</div>
 			<div class="all-coins">
 				<slot></slot>
-				<div class="coins">
+				<div :class="['coins', { lastBonusGame: (bonusCount.length >= 3), lastOrEnded: (startGame || bonusCount.length == 4)}]">
 					<div class="container">
 						<coin v-bind:gameStarted="startGame" v-for="coin in coins" v-bind:order="coin.order" v-bind:value="coin.value"
 							@clicked="getValue">{{coin.order}}</coin>

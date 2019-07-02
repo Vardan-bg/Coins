@@ -7,7 +7,7 @@ import Vue from 'vue'
 	watch: {
 		betAmount: {
 			handler(after, before) {
-				this.$emit('changeBet', this.betAmount);
+				this.betNumber = this.betAmount;
 			}
 		}
 	}
@@ -17,15 +17,19 @@ export class BetTab extends Vue {
 	title: string;
 	start: boolean;
 	betAmount: number;
+	betNumber: number = 100;
 	changeBet(value: number) {
 		if (+this.betAmount + value >= 0) {
-			this.betAmount = +this.betAmount + value;
+			this.$emit('changeBet', +this.betAmount + value);
 		}
-		//startBus.$emit('start-event');
+	}
+	emitState(event) {
+		this.$emit('changeBet', +event.target.value);
+		
 	}
 	onKeyDown(event) {
 		// Allow: backspace, delete, tab, escape, enter and .
-		if ([46, 8, 9, 27, 13, 110].indexOf(event.keyCode) !== -1 ||
+		if ([46, 8, 9, 27, 13].indexOf(event.keyCode) !== -1 ||
 			// Allow: Ctrl+A
 			(event.keyCode == 65 && event.ctrlKey === true) ||
 			// Allow: Ctrl+f

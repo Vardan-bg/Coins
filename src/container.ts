@@ -57,17 +57,10 @@ export class Container extends Vue {
 		startBus.$on('startBonus-event', this.startBonusEventHandler);
 		axios.get(`http://${this.host}/api/Game/GetGame`, this.headers)
 			.then(response => {
-				if(!Array.isArray(this.response)) {
-					for (let index = 0; index < response.data.length; index++) {
-						const element = response.data[index];
-						console.log('test2', element)
-						this.response = element;
-						this.mapState(element);
-						
-					}
-				} else {
-					this.response = response.data;
-					this.mapState(response.data);
+				if(response.data) {
+					this.total = response.data.balance;
+					// this.response = response.data;
+					// this.mapState(response.data);
 				}
 			})
 			.catch(e => {
@@ -130,10 +123,8 @@ export class Container extends Vue {
 		if (!this.startGame && !this.bonusStarted) {
 			// this.startingGame();
 			this.bonusStarted = true;
-			this.bonusCount = [];
 		} else if (!this.startGame && this.bonusStarted) {
 			this.bonusStarted = false;
-			this.bonusCount = [];
 		}
 	}
 
@@ -158,6 +149,9 @@ export class Container extends Vue {
 	startEventHandler() {
 		if (!this.startGame && this.betValue > 0) {
 			this.total -= this.betValue;
+			if(this.bonusCount.length == 4) {
+				this.bonusCount = [];
+			}
 			this.startingGame();
 			//this.getRange();
 		}

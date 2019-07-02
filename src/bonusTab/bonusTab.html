@@ -3,14 +3,14 @@
 	<h2>BONUS GAME</h2>
 	<div class="bonus-block-number">
 		<div>
-			<button class="stage" :class="[{bonusActive: (isActive && bonusGames.length === 0), gameWon: (bonusGames && bonusGames[0]), gameLost: (bonusGames && bonusGames[0] == false)}]">1</button>
-			<button class="stage" :class="[{bonusActive: (isActive && bonusGames.length === 1), gameWon: (bonusGames && bonusGames[1]), gameLost: (bonusGames && bonusGames[1] == false)}]">2</button>
-			<button class="stage" :class="[{bonusActive: (isActive && bonusGames.length === 2), gameWon: (bonusGames && bonusGames[2]), gameLost: (bonusGames && bonusGames[2] == false)}]">3</button>
-			<button class="stage" :class="[{bonusActive: (isActive && bonusGames.length === 3), gameWon: (bonusGames && bonusGames[3]), gameLost: (bonusGames && bonusGames[3] == false)}]">4</button>
-			<button class="stage" :class="[{bonusActive: (isActive && bonusGames.length === 4), gameWon: (bonusGames && bonusGames[4]), gameLost: (bonusGames && bonusGames[4] == false)}]">5</button>
+			<button class="stage" :class="[{inactiveMode: !isActive, bonusActive: (isActive && bonusGames.length === 0), gameWon: (bonusGames && bonusGames[0]), gameLost: (isActive && bonusGames && bonusGames[0] == false)}]">1</button>
+			<button class="stage" :class="[{inactiveMode: !isActive, bonusActive: (isActive && bonusGames.length === 1), gameWon: (bonusGames && bonusGames[1]), gameLost: (isActive && bonusGames && bonusGames[1] == false)}]">2</button>
+			<button class="stage" :class="[{inactiveMode: !isActive, bonusActive: (isActive && bonusGames.length === 2), gameWon: (bonusGames && bonusGames[2]), gameLost: (isActive && bonusGames && bonusGames[2] == false)}]">3</button>
+			<button class="stage" :class="[{inactiveMode: !isActive, bonusActive: (isActive && bonusGames.length === 3), gameWon: (bonusGames && bonusGames[3]), gameLost: (isActive && bonusGames && bonusGames[3] == false)}]">4</button>
+			<button class="stage" :class="[{inactiveMode: !isActive, bonusActive: (isActive && bonusGames.length === 4), gameWon: (bonusGames && bonusGames[4]), gameLost: (isActive && bonusGames && bonusGames[4] == false)}]">5</button>
 		</div>
 		<div class="border-left">
-			<button class="ok-button" v-on:click="startBonusGame">{{isActive ? 'Off' : 'On'}}</button>
+			<button class="ok-button" :class="[isActive ? 'isOn' : 'isOff']" v-on:click="startBonusGame">{{isActive ? 'On' : 'Off'}}</button>
 		</div>
 	</div>
 

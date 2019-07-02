@@ -8,7 +8,7 @@
 			<div class="border-right">
 				<button :disabled="start" v-on:click="changeBet(-100)">-</button>
 			</div>
-			<input :disabled="start" :min="0" @keydown="onKeyDown" step="100" type="number" v-model="betAmount">
+			<input :disabled="start" :min="0" v-on:change="emitState" @keydown="onKeyDown" step="100" type="number" v-model="betNumber">
 			<div class="border-left">
 				<button :disabled="start" v-on:click="changeBet(100)">+</button>
 			</div>

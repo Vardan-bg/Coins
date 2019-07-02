@@ -271,6 +271,99 @@ a:focus, button:focus, input:focus, textarea:focus {
   100% {}
 }
 
+.coins.lastBonusGame.lastOrEnded .container :nth-child(n) .heads {
+  background-image: url("../img/coin/bonus/greenBack.png");
+}
+.coins.lastBonusGame.lastOrEnded .container :nth-child(n+6) .heads {
+  background-image: url("../img/coin/bonus/blueBack.png");
+}
+.coins.lastBonusGame.lastOrEnded .container :nth-child(n+11) .heads {
+  background-image: url("../img/coin/bonus/yellowBack.png");
+}
+.coins.lastBonusGame.lastOrEnded .container :nth-child(n+16) .heads {
+  background-image: url("../img/coin/bonus/redBack.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails1 {
+  background-image: url("../img/coin/bonus/coin1.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails2 {
+  background-image: url("../img/coin/bonus/coin2.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails3 {
+  background-image: url("../img/coin/bonus/coin3.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails4 {
+  background-image: url("../img/coin/bonus/coin4.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails5 {
+  background-image: url("../img/coin/bonus/coin5.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails6 {
+  background-image: url("../img/coin/bonus/coin6.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails7 {
+  background-image: url("../img/coin/bonus/coin7.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails8 {
+  background-image: url("../img/coin/bonus/coin8.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails9 {
+  background-image: url("../img/coin/bonus/coin9.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails10 {
+  background-image: url("../img/coin/bonus/coin10.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails11 {
+  background-image: url("../img/coin/bonus/coin11.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails12 {
+  background-image: url("../img/coin/bonus/coin12.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails13 {
+  background-image: url("../img/coin/bonus/coin13.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails14 {
+  background-image: url("../img/coin/bonus/coin14.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails15 {
+  background-image: url("../img/coin/bonus/coin15.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails16 {
+  background-image: url("../img/coin/bonus/coin16.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails17 {
+  background-image: url("../img/coin/bonus/coin17.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails18 {
+  background-image: url("../img/coin/bonus/coin18.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails19 {
+  background-image: url("../img/coin/bonus/coin19.png");
+}
+
+.coins.lastBonusGame.lastOrEnded .tails20 {
+  background-image: url("../img/coin/bonus/coin20.png");
+}
+
 .tails0 {
   background-image: url("../img/coin/coin0.png");
 }
@@ -395,7 +488,7 @@ a:focus, button:focus, input:focus, textarea:focus {
 
 .bonus-block-number {
   float: left;
-  margin: 4px 10px 0 0;
+  margin: 0px 10px 0 0;
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
@@ -467,7 +560,21 @@ a:focus, button:focus, input:focus, textarea:focus {
   transition: 0.2s ease-in-out;
   background: #ffff00;
 }
+.isOn 
+{
+  text-shadow: 0 -2px 0 #268629, 0 1px 1px #1de825, 0 0 4px white;
+  color: #19ff00;
+}
+.isOff {
+  /* text-shadow: 0 -2px 0 #268629, 0 1px 1px #1de825, 0 0 4px white;
+  color: #19ff00; */
+}
 
+.inactiveMode {
+  background: #828282!important;
+  border: 0px!important;
+  box-shadow: none!important;
+}
 .bonus-block-number button.stage.bonusActive {
   border: 1px solid white;
   box-shadow: 0px 0px 15px 3px #ffff007f;
