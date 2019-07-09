@@ -44,6 +44,7 @@ export class Container extends Vue {
 	headers: any = headers;
 	game: GameModel = new GameModel;
 	response: GameModel = new GameModel;
+	gameResult: any = '';
 
 	mounted() {
 		for (let index = 1; index <= 20; index++) {
@@ -129,7 +130,7 @@ export class Container extends Vue {
 	}
 
 	cashOutEventHandler() {
-		if (this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range) {
+		if (this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range && !this.bonusStarted) {
 			axios.post(`http://${this.host}/api/Game/CashBack`, this.response, this.headers)
 				.then(response => {
 					this.counter = 0;
@@ -144,12 +145,13 @@ export class Container extends Vue {
 
 	stopGame() {
 		this.startGame = false;
+		this.gameResult = (this.win) ? this.betValue * 3 : '';
 	}
 
 	startEventHandler() {
 		if (!this.startGame && this.betValue > 0) {
 			this.total -= this.betValue;
-			if(this.bonusCount.length == 4) {
+			if(this.bonusCount.length == 5) {
 				this.bonusCount = [];
 			}
 			this.startingGame();
@@ -167,6 +169,7 @@ export class Container extends Vue {
 				this.response = response.data;
 				this.win = false;
 				this.startGame = true;
+				this.gameResult = '';
 				this.sum = 0;
 				this.counter = 0;
 				this.startNumber = +response.data.startRange;

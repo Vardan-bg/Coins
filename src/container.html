@@ -12,7 +12,7 @@
 			</div>
 			<div class="panels">
 				<div class="leftPanel">
-					<div class="topPanelSection">{{counter == 3? (win? (betValue * 3): ('- ' + betValue)): ''}}</div>
+					<div class="topPanelSection">{{gameResult}}</div>
 				</div>
 				<div class="rightPanel">
 					<div class="topPanelSection">{{total}}</div>
@@ -20,7 +20,7 @@
 			</div>
 			<div class="all-coins">
 				<slot></slot>
-				<div :class="['coins', { lastBonusGame: (bonusCount.length >= 3), lastOrEnded: (startGame || bonusCount.length == 4)}]">
+				<div :class="['coins', { lastBonusGame: (bonusCount.length >= 4), lastOrEnded: (startGame || bonusCount.length == 5)}]">
 					<div class="container">
 						<coin v-bind:gameStarted="startGame" v-for="coin in coins" v-bind:order="coin.order" v-bind:value="coin.value"
 							@clicked="getValue">{{coin.order}}</coin>
@@ -32,7 +32,7 @@
 				<betTab v-bind:betAmount="betValue" v-on:changeBet="betValue = $event" v-bind:start="startGame">
 				</betTab>
 				<startButtons
-					v-bind:active="this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range"
+					v-bind:active="this.counter == 2 && this.sum >= this.startNumber && this.sum <= this.startNumber + this.range && !bonusStarted"
 					v-bind:start="startGame || this.betValue == 0"></startButtons>
 			</div>
 			<div :class="['overlay', { overlayActive: counter > 2 }]">

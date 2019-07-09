@@ -3,6 +3,7 @@ $depth: 5;
 $color: #2d1703;
 $txtcolor: #e5a529;
 $text-color: darken($txtcolor, 10%);
+$start-color:  darken(#13dc11, 10%);
 $lighten-on-hover: 7%;
 $button-speed: 0.06;
 $timing-function: ease-out;
@@ -17,7 +18,7 @@ button.wooden {
   font-family: Helvetica, Arial, Sans-Serif;
   text-decoration: none;
   font-weight: bold;
-  color: $text-color;
+  color: $start-color;
   &:visited {
     color: $text-color;
   }

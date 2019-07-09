@@ -581,9 +581,9 @@ a:focus, button:focus, input:focus, textarea:focus {
 }
 
 .bonus-block-number button.stage.gameWon {
-  border: 1px solid #27cc07;
-  background: #27cc07;
-  box-shadow: 0px 0px 15px 3px #27cc077f;
+  border: 1px solid #27cc07 !important;
+  background: #27cc07 !important;
+  box-shadow: 0px 0px 15px 3px #27cc077f !important;
 }
 
 .bonus-block-number button.stage.gameLost {
@@ -594,8 +594,11 @@ a:focus, button:focus, input:focus, textarea:focus {
 
 .bonus-block-number button.stage:last-child {
   border: 1px solid #27cc07;
-  background: #27cc07;
+  /* background: #27cc07; */
+  background: url("../img/wheel.png");
   box-shadow: 0px 0px 15px 3px #27cc077f;
+  height: 31px;
+  line-height: 28px;
 }
 .bet-field {
   display: inline-flex;
